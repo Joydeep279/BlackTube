@@ -5,9 +5,9 @@ const SideBar = () => {
   if (!navState) return null;
 
   const tailwindConfigSideBar =
-    "shadow border-b border-gray-200 w-40 flex justify-center flex-col pl-5 gap-2";
+    "flex justify-center flex-col pl-5 gap-2  items-center";
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 min-w-[225px] items-center">
       <ul className={tailwindConfigSideBar}>
         <li>HOME</li>
         <li>Shorts</li>
@@ -27,5 +27,4 @@ const SideBar = () => {
     </div>
   );
 };
-
 export default SideBar;

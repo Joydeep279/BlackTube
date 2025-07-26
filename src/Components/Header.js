@@ -16,7 +16,7 @@ const Header = () => {
           alt="sideBTN"
         />
         <img
-          className="w-28 h-16"
+          className="w-28"
           src="https://1000logos.net/wp-content/uploads/2017/05/Black-YouTube-logo.png"
           alt="YouTube"
         />
