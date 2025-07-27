@@ -9,7 +9,7 @@ const SideBar = () => {
   return (
     <div className="flex flex-col gap-2 min-w-[225px] items-center">
       <ul className={tailwindConfigSideBar}>
-        <li>HOME</li>
+        <li>Home</li>
         <li>Shorts</li>
         <li>Subscription</li>
       </ul>

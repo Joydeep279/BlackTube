@@ -7,7 +7,7 @@ const Header = () => {
     dispatch(toggleNavState());
   };
   return (
-    <div className="flex flex-row justify-between px-5">
+    <div className="flex flex-row justify-between px-5 items-start">
       <div className="flex flex-row items-center gap-2 ">
         <img
           onClick={toggleNavStateFn}
@@ -21,12 +21,11 @@ const Header = () => {
           alt="YouTube"
         />
       </div>
-      <div className="flex flex-row items-center rounded-xl  border-1 border-solid">
+      <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1">
         <input
-          id="123"
           placeholder="Search"
           type="text"
-          className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-2 border-[0.5px] border-gray-300 focus:outline-blue-300"
+          className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border-[0.5px] border-gray-300 focus:outline-blue-300"
         />
         <button className="rounded-r-2xl border-none bg-gray-100 px-5 py-1">
           <img
@@ -43,7 +42,7 @@ const Header = () => {
           />
         </button>
       </div>
-      <div className="flex flex-row items-center gap-8 pr-5">
+      <div className="flex flex-row items-center gap-8 pr-5 pt-2">
         <button className="flex justify-start items-center rounded-3xl pr-2 py-0 h-10 bg-gray-100">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg"

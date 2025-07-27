@@ -1,10 +1,11 @@
 import SideBar from "./SideBar";
-import VideoContainer from "./VideoContainer";
+import { Outlet } from "react-router-dom";
+
 const MainContainer = () => {
   return (
     <div className="flex flex-row">
       <SideBar />
-      <VideoContainer/>
+      <Outlet />
     </div>
   );
 };
