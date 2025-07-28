@@ -1,11 +1,11 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const VideoCardLayout = ({ info }) => {
   const { title, thumbnails, channelTitle } = info.snippet;
   const { viewCount } = info.statistics;
 
   return (
-    <React.Fragment>
+    <Link to={"watch?v="+info.id}>
       <img
         src={thumbnails.medium.url}
         alt="error"
@@ -16,7 +16,7 @@ const VideoCardLayout = ({ info }) => {
         <h2 className="from-neutral-400">{channelTitle}</h2>
         <h2 className="from-neutral-400">{viewCount} views</h2>
       </div>
-    </React.Fragment>
+    </Link>
   );
 };
 
