@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { toggleNavState } from "../utils/navState";
-import { Link } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,13 +15,11 @@ const Header = () => {
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
           alt="sideBTN"
         />
-        <Link to="/watch">
-          <img
-            className="w-28"
-            src="https://1000logos.net/wp-content/uploads/2017/05/Black-YouTube-logo.png"
-            alt="YouTube"
-          />
-        </Link>
+        <img
+          className="w-28"
+          src="https://1000logos.net/wp-content/uploads/2017/05/Black-YouTube-logo.png"
+          alt="YouTube"
+        />
       </div>
       <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1">
         <input
