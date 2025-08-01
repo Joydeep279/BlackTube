@@ -1,16 +1,39 @@
 import { useDispatch } from "react-redux";
 import { toggleNavState } from "../utils/navState";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [searchBoxStatus, setSearchBoxStatus] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [searchSuggestion, setSearchSuggestion] = useState([]);
+  function getSearchText() {
+    return searchText;
+  }
+  async function callSearchAPI() {
+    const apiData = await fetch(
+      `http://suggestqueries.google.com/complete/search?client=firefox&q=${searchText}`
+    );
+    const jsonData = await apiData.json();
+    setSearchSuggestion(jsonData[1]);
+  }
+  useEffect(() => {
+    console.log(`Text:${getSearchText()}`);
+    const apiTimer = setTimeout(() => {
+      callSearchAPI();
+    }, 300);
+    return () => {
+      clearTimeout(apiTimer);
+    };
+  }, [searchText]);
   const dispatch = useDispatch();
   const toggleNavStateFn = () => {
     dispatch(toggleNavState());
   };
   return (
-    <div className="flex flex-row justify-between px-5 items-start">
+    <div className="flex flex-row justify-between px-5 items-start sticky top-0 py-2 bg-white">
       <div className="flex flex-row items-center gap-2 ">
         <img
-          onClick={toggleNavStateFn}
+          onClick={() => toggleNavStateFn()}
           className="w-8 h-8 cursor-pointer"
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
           alt="sideBTN"
@@ -22,11 +45,31 @@ const Header = () => {
         />
       </div>
       <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1">
-        <input
-          placeholder="Search"
-          type="text"
-          className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border-[0.5px] border-gray-300 focus:outline-blue-300"
-        />
+        <div>
+          <input
+            onFocus={() => {
+              setSearchBoxStatus(true);
+            }}
+            onBlur={() => {
+              setSearchBoxStatus(false);
+            }}
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            placeholder="Search"
+            type="text"
+            className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border-[0.5px] border-gray-300 focus:outline-indigo-200 outline-[0.2px]"
+          />
+          {searchBoxStatus && (
+            <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border">
+              {searchSuggestion.map((items) => (
+                <li className="py-2.5 px-3 hover:bg-slate-50 hover:shadow-sm rounded-lg">
+                  {items}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
         <button className="rounded-r-2xl border-none bg-gray-100 px-5 py-1">
           <img
             className="w-6 h-8"

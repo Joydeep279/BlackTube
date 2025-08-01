@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { videoApiKey } from "../utils/constants";
-import VideoCardLayout from "./VideoCardLayout";
+import VideoCardLayout, { AdContainer } from "./VideoCardLayout";
 
 const VideoContainer = () => {
   const [videolist, setVideoList] = useState(0);
@@ -11,12 +11,16 @@ const VideoContainer = () => {
   }
   useEffect(() => {
     getVideoData();
+    
   }, []);
   if (videolist === 0) {
     return <div>Loading</div>;
   }
   return (
     <div className="flex flex-wrap gap-2 justify-start pl-10">
+      <div className="w-[400px] h-80 text-wrap rounded-xl overflow-hidden">
+        <AdContainer info={videolist[0]} />
+      </div>
       {videolist.map((items) => (
         <div
           key={items.id}

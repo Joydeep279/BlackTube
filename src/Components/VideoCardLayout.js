@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
-
+import React from "react";
 const VideoCardLayout = ({ info }) => {
-  const { title, thumbnails, channelTitle } = info.snippet;
+  const { title, channelTitle } = info.snippet;
   const { viewCount } = info.statistics;
-  console.log(thumbnails);
 
   return (
     <Link to={"watch?v=" + info.id}>
       <img
-        src={thumbnails.maxres.url}
+        src={`https://img.youtube.com/vi/${info.id}/maxresdefault.jpg`}
         alt="error"
-        className="w-full h-52 rounded-xl"
+        className="w-full h-52"
       />
+
       <div className="pl-1">
         <h1 className="font-sans font-medium">{title}</h1>
         <h2 className="from-neutral-400">{channelTitle}</h2>
@@ -20,5 +20,12 @@ const VideoCardLayout = ({ info }) => {
     </Link>
   );
 };
-
+export const AdContainer = ({ info }) => {
+  return (
+    <React.Fragment>
+      <span className="absolute text-white">Ad</span>
+      <VideoCardLayout info={info} />
+    </React.Fragment>
+  );
+};
 export default VideoCardLayout;
