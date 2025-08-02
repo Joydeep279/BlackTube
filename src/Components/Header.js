@@ -1,31 +1,35 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleNavState } from "../utils/navState";
 import { useEffect, useState } from "react";
-
+import { addToCache } from "../utils/searchCache";
 const Header = () => {
   const [searchBoxStatus, setSearchBoxStatus] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [searchSuggestion, setSearchSuggestion] = useState([]);
-  function getSearchText() {
-    return searchText;
-  }
+  const searchCache = useSelector((store) => store.search);
+  const dispatch = useDispatch();
+
   async function callSearchAPI() {
+
     const apiData = await fetch(
       `http://suggestqueries.google.com/complete/search?client=firefox&q=${searchText}`
     );
     const jsonData = await apiData.json();
     setSearchSuggestion(jsonData[1]);
+    dispatch(addToCache({ [searchText]: jsonData[1] }));
   }
   useEffect(() => {
-    console.log(`Text:${getSearchText()}`);
+
     const apiTimer = setTimeout(() => {
-      callSearchAPI();
+      if (searchCache[searchText]) {
+        setSearchSuggestion(searchCache[searchText]);
+      } else callSearchAPI();
     }, 300);
+
     return () => {
       clearTimeout(apiTimer);
     };
   }, [searchText]);
-  const dispatch = useDispatch();
   const toggleNavStateFn = () => {
     dispatch(toggleNavState());
   };
@@ -59,7 +63,7 @@ const Header = () => {
             type="text"
             className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border-[0.5px] border-gray-300 focus:outline-indigo-200 outline-[0.2px]"
           />
-          {searchBoxStatus && (
+          {searchBoxStatus && searchText !== "" && (
             <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border">
               {searchSuggestion.map((items) => (
                 <li className="py-2.5 px-3 hover:bg-slate-50 hover:shadow-sm rounded-lg">
