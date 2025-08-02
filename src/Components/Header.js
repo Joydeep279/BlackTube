@@ -10,7 +10,6 @@ const Header = () => {
   const dispatch = useDispatch();
 
   async function callSearchAPI() {
-
     const apiData = await fetch(
       `http://suggestqueries.google.com/complete/search?client=firefox&q=${searchText}`
     );
@@ -19,7 +18,6 @@ const Header = () => {
     dispatch(addToCache({ [searchText]: jsonData[1] }));
   }
   useEffect(() => {
-
     const apiTimer = setTimeout(() => {
       if (searchCache[searchText]) {
         setSearchSuggestion(searchCache[searchText]);

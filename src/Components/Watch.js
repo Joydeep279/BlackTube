@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeNavBar } from "../utils/navState";
+import Comment from "./Comment";
 
 const Watch = () => {
   const [getVideoId] = useSearchParams("v");
@@ -13,6 +14,8 @@ const Watch = () => {
     dispatch(closeNavBar());
   }, []);
   return (
+    <div>
+
     <iframe
       className="mx-14 my-2 rounded-xl w-[866px] h-[487px]"
       title={"videoID" + videoID}
@@ -20,6 +23,8 @@ const Watch = () => {
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerPolicy="strict-origin-when-cross-origin"
       allowFullScreen></iframe>
+      <Comment/>
+      </div>
   );
 };
 
