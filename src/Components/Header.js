@@ -34,14 +34,14 @@ const Header = () => {
   };
   return (
     <div className="flex flex-row justify-between px-5 items-start sticky top-0 bg-white pb-5">
-      <div className="flex flex-row items-center gap-2 ">
+      <div className="flex flex-row items-center gap-2 pt-1">
         <img
           onClick={() => toggleNavStateFn()}
           className="w-8 h-8 cursor-pointer"
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
           alt="sideBTN"
         />
-        <img className="w-36 h-10 pt-0.5" src={logo} alt="YouTube" />
+        <img className="w-32 h-10" src={logo} alt="YouTube" />
       </div>
       <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1">
         <div>
