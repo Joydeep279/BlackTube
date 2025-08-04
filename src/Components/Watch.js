@@ -10,8 +10,6 @@ const Watch = () => {
   const videoID = getVideoId.get("v");
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("useEffect Called");
-
     dispatch(closeNavBar());
   }, []);
   return (

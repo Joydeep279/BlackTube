@@ -33,7 +33,7 @@ const Header = () => {
     dispatch(toggleNavState());
   };
   return (
-    <div className="flex flex-row justify-between px-5 items-start sticky top-0 bg-white pb-5">
+    <div className="flex flex-row justify-between px-5 items-start sticky top-0 bg-white pb-5 min-w-14">
       <div className="flex flex-row items-center gap-2 pt-1">
         <img
           onClick={() => toggleNavStateFn()}

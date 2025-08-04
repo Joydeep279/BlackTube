@@ -118,11 +118,11 @@ const CommentLayout = ({ data }) => {
 
 const Comment = () => {
   return (
-    <div className="px-10">
+    <div className="px-16 w-1/2">
       <h1 className="font-bold text-xl">Comment</h1>
       <div>
-        {commentData.map((items) => (
-          <CommentLayout data={items} />
+        {commentData.map((items, index) => (
+          <CommentLayout data={items} key={index} />
         ))}
       </div>
     </div>

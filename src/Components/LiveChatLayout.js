@@ -1,8 +1,7 @@
 const LiveChatLayout = (props) => {
-    console.log(props);
     const { name, msg, id }=props.data
   return (
-    <div className="flex flex-row justify-start items-start gap-2" key={id}>
+    <div className="flex flex-row justify-start items-start gap-2">
       <img
         src={`https://avatar.iran.liara.run/public?v=`+id}
         alt="profile-pic"
