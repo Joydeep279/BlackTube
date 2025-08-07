@@ -44,7 +44,7 @@ const LiveChatContainer = () => {
           value={typedMsg}
           onChange={(e) => setTypedMsg(e.target.value)}></input>
         <button
-          className="w-1/5 h-8 rounded-r bg-gray-500 text-white font-mono font-medium"
+          className="w-1/5 h-8 rounded-r bg-gray-400 text-white font-mono font-medium"
           onClick={() => {
             if (typedMsg !== "") {
               dispatch(addChat({ id: -1, name: "Joydeep", msg: typedMsg }));

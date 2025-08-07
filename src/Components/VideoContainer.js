@@ -17,7 +17,7 @@ const VideoContainer = () => {
     return <div>Loading</div>;
   }
   return (
-    <div className="flex flex-wrap gap-2 justify-start pl-10">
+    <div className="flex flex-wrap gap-2 justify-start pl-5">
       <div className="w-[400px] h-80 text-wrap rounded-xl overflow-hidden">
         <AdContainer info={videolist[0]} />
       </div>

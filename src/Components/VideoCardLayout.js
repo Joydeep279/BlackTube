@@ -9,7 +9,7 @@ const VideoCardLayout = ({ info }) => {
       <img
         src={`https://img.youtube.com/vi/${info.id}/maxresdefault.jpg`}
         alt="error"
-        className="w-full h-52"
+        className="w-full h-52 rounded-2xl"
       />
 
       <div className="pl-1">

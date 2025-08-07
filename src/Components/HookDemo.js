@@ -4,8 +4,8 @@ const HookDemo = () => {
   const [isdark, setTheme] = useState(false);
   const [value, setValue] = useState(0);
 
-  //   const prime = useMemo(() => findNthPrime(value), [value]);
-  const prime = findNthPrime(value);
+  const prime = useMemo(() => findNthPrime(value), [value]);// NOTE: ONE line can change everything!
+//   const prime = findNthPrime(value);
   console.log("Render() Called!");
   return (
     <div
