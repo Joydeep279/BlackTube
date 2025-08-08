@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleNavState } from "../utils/navState";
 import { useEffect, useState } from "react";
 import { addToCache } from "../utils/searchCache";
+import logo from "../img/YT-logo.png";
 const Header = () => {
   const [searchBoxStatus, setSearchBoxStatus] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -32,7 +33,7 @@ const Header = () => {
     dispatch(toggleNavState());
   };
   return (
-    <div className="flex flex-row justify-between px-5 items-start sticky top-0 bg-white pb-5 min-w-14">
+    <div className="flex flex-row justify-between px-5 items-start sticky top-0 pb-1 min-w-14 backdrop-blur-md bg-white/90">
       <div className="flex flex-row items-center gap-2.5 pt-2.5 ">
         <img
           onClick={() => toggleNavStateFn()}
@@ -40,11 +41,7 @@ const Header = () => {
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
           alt="sideBTN"
         />
-        <img
-          className="w-28"
-          src="https://cdn.brandfetch.io/idVfYwcuQz/theme/dark/idr9ec_Nkx.svg?c=1bxid64Mup7aczewSAYMX&t=1728452928177"
-          alt="YouTube"
-        />
+        <img className="w-32 h-6" src={logo} alt="YouTube" />
       </div>
       <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1">
         <div>

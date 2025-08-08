@@ -11,7 +11,7 @@ const SideBar = () => {
     <div className="flex flex-col min-w-[225px] items-start ml-6 sticky top-16 left-0 h-screen overflow-y-scroll pb-16">
       <ul className={tailwindConfig_ul}>
         <li className={tailwindConfig_li}>
-          <div className="flex gap-5 items-center py-2 px-1 ">
+          <div className="flex gap-5 items-center py-2 px-1">
             <img
               src="https://img.icons8.com/?size=512&id=2797&format=png"
               alt="home-icon"
@@ -23,7 +23,7 @@ const SideBar = () => {
         <li className={tailwindConfig_li}>
           <div className="flex gap-5 items-center py-2 px-1 ">
             <img
-              src="https://img.icons8.com/?size=512&id=Y22IOtUJ7TTZ&format=png"
+              src="https://img.icons8.com/?size=512&id=h5l3jZXManlM&format=png"
               alt="shorts-icon"
               className="w-6 h-6"
             />
@@ -33,7 +33,7 @@ const SideBar = () => {
         <li className={tailwindConfig_li}>
           <div className="flex gap-5 items-center py-2 px-1 ">
             <img
-              src="https://icons.iconarchive.com/icons/pictogrammers/material/256/youtube-subscription-icon.png"
+              src="https://img.icons8.com/?size=512w&id=reqYJP3X0f7Y&format=png"
               alt="subscriptions-icon"
               className="w-6 h-6"
             />
@@ -63,7 +63,7 @@ const SideBar = () => {
         <li className={tailwindConfig_li}>
           <div className="flex gap-5 items-center py-2 px-1 ">
             <img
-              src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/playlist-videos-icon.png"
+              src="https://img.icons8.com/?size=512w&id=kTsMbdVZCoxl&format=png"
               alt="shorts-icon"
               className="w-6 h-6"
             />
@@ -83,7 +83,7 @@ const SideBar = () => {
         <li className={tailwindConfig_li}>
           <div className="flex gap-5 items-center py-2 px-1 ">
             <img
-              src="https://cdn.creazilla.com/icons/3264833/watch-later-icon-md.png"
+              src="https://cdn-icons-png.flaticon.com/512/10068/10068341.png"
               alt="subscriptions-icon"
               className="w-6 h-6"
             />
@@ -93,7 +93,7 @@ const SideBar = () => {
         <li className={tailwindConfig_li}>
           <div className="flex gap-5 items-center py-2 px-1 ">
             <img
-              src="https://img.icons8.com/?size=512w&id=82788&format=png"
+              src="https://img.icons8.com/?size=512w&id=24816&format=png"
               alt="subscriptions-icon"
               className="w-6 h-6"
             />
@@ -103,9 +103,9 @@ const SideBar = () => {
         <li className={tailwindConfig_li}>
           <div className="flex gap-5 items-center py-2 px-1 ">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/3502/3502477.png"
+              src="https://img.icons8.com/?size=512w&id=vk3CfSUT5UA6&format=png"
               alt="subscriptions-icon"
-              className="w-6 h-6"
+              className="w-7 h-6"
             />
             <span> Download</span>
           </div>
@@ -118,7 +118,7 @@ const SideBar = () => {
         <li className={tailwindConfig_li}>
           <div className="flex gap-5 items-center py-2 px-1 ">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/10252/10252887.png"
+              src="https://cdn-icons-png.flaticon.com/512/833/833314.png"
               alt="home-icon"
               className="w-6 h-6"
             />
