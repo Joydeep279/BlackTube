@@ -33,15 +33,15 @@ const Header = () => {
     dispatch(toggleNavState());
   };
   return (
-    <div className="flex flex-row justify-between px-5 items-start sticky top-0 pb-1 min-w-14 backdrop-blur-md bg-white/90">
-      <div className="flex flex-row items-center gap-2.5 pt-2.5 ">
+    <div className="flex flex-row justify-between px-0 items-start sticky top-0 pb-1 min-w-14 backdrop-blur-md bg-white/90">
+      <div className="flex flex-row items-center gap-2.5 pt-2.5 ml-5">
         <img
           onClick={() => toggleNavStateFn()}
           className="w-8 h-8 cursor-pointer"
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
           alt="sideBTN"
         />
-        <img className="w-32 h-6" src={logo} alt="YouTube" />
+        <img className="w-28 h-6" src={logo} alt="YouTube" />
       </div>
       <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1">
         <div>

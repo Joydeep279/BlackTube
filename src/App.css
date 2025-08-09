@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  /* Hide scrollbar by default */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hover-scrollbar {
+    -ms-overflow-style: none; /* IE & Edge */
+    scrollbar-width: none;    /* Firefox */
+  }
+
+  /* Show scrollbar on hover */
+  .show-scrollbar::-webkit-scrollbar {
+    display: initial;
+  }
+  .show-scrollbar {
+    -ms-overflow-style: auto;
+    scrollbar-width: auto;
+  }
+}
+

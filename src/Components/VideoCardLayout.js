@@ -3,7 +3,12 @@ import React from "react";
 const VideoCardLayout = ({ info }) => {
   const { title, channelTitle } = info.snippet;
   const { viewCount } = info.statistics;
-
+  let newViewCount = Math.round(viewCount / 1000000);
+  let viewCountUnit = " M";
+  if (!newViewCount) {
+    newViewCount = Math.round(viewCount / 1000);
+    viewCountUnit = " K";
+  }
   return (
     <Link to={"watch?v=" + info.id}>
       <img
@@ -13,9 +18,11 @@ const VideoCardLayout = ({ info }) => {
       />
 
       <div className="pl-1">
-        <h1 className="font-sans font-medium">{title}</h1>
-        <h2 className="from-neutral-400">{channelTitle}</h2>
-        <h2 className="from-neutral-400">{viewCount} views</h2>
+        <div className="font-sans font-medium text-base p-0 m-0">{title}</div>
+        <div className="font-medium text-base text-gray-600 pl-1">{channelTitle}</div>
+        <div className="font-normal text-base text-gray-600 pl-1">
+          {newViewCount + viewCountUnit} views
+        </div>
       </div>
     </Link>
   );
@@ -23,7 +30,7 @@ const VideoCardLayout = ({ info }) => {
 export const AdContainer = ({ info }) => {
   return (
     <React.Fragment>
-      <span className="absolute text-white">Ad</span>
+      <div className="absolute text-white">Ad</div>
       <VideoCardLayout info={info} />
     </React.Fragment>
   );

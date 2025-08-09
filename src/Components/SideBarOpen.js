@@ -8,9 +8,9 @@ const SideBar = () => {
   const navState = useSelector((store) => store.nav.isNavOpen);
   if (!navState) return null;
   return (
-    <div className="flex flex-col min-w-[225px] items-start ml-6 sticky top-16 left-0 h-screen overflow-y-scroll pb-16">
+    <div className="flex flex-col w-2/12 items-start sticky top-16 left-0 h-screen overflow-y-scroll pb-16 ml-5 no-scrollbar hover::show-scrollbar backdrop-blur-md bg-white/90">
       <ul className={tailwindConfig_ul}>
-        <li className={tailwindConfig_li}>
+        <li className={tailwindConfig_li + " bg-gray-100"}>
           <div className="flex gap-5 items-center py-2 px-1">
             <img
               src="https://img.icons8.com/?size=512&id=2797&format=png"
