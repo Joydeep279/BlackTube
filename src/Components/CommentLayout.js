@@ -23,7 +23,7 @@ const CommentLayout = ({ info }) => {
             alt="Like-BTN"
             className="h-4 w-4 cursor-pointer"
           />
-          <span>{likeCount}</span>
+          <span className="font-medium text-black text-sm">{likeCount}</span>
         </div>
         <div>
           <img

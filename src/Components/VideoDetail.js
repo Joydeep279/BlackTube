@@ -46,7 +46,7 @@ const VideoDetail = () => {
                 alt="Like"
                 className="w-5 h-5"
               />
-              <span className="text-sm">1.2K</span>
+              <span className="text-sm font-medium">1.2K</span>
             </button>
 
             <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
@@ -55,7 +55,7 @@ const VideoDetail = () => {
                 alt="Dislike"
                 className="w-5 h-5"
               />
-              <span className="text-sm">23</span>
+              <span className="text-sm font-medium">23</span>
             </button>
 
             <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
@@ -72,7 +72,7 @@ const VideoDetail = () => {
                   d="M4 12v7a1 1 0 0 0 1 1h14M16 6l-4-4-4 4M12 2v14"
                 />
               </svg>
-              <span className="text-sm">Share</span>
+              <span className="text-lg font-medium">Share</span>
             </button>
 
             <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
@@ -89,7 +89,7 @@ const VideoDetail = () => {
                   d="M12 3v12m0 0l4-4m-4 4l-4-4m13 9H3"
                 />
               </svg>
-              <span className="text-sm">Download</span>
+              <span className="text-lg font-medium">Download</span>
             </button>
           </div>
         </div>

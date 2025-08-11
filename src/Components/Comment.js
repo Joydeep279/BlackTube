@@ -22,7 +22,7 @@ const Comment = () => {
     getCommentData();
   }, []);
   return (
-    <div>
+    <div className="pl-5">
       <div className="flex items-center justify-start">
         <h1 className="py-5 text-xl font-bold px-10 font-sans">
           100 Comments
