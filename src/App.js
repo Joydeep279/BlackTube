@@ -1,12 +1,12 @@
 import { Provider } from "react-redux";
 import "./App.css";
-import Header from "./Components/Header";
 import store from "./utils/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Watch from "./Components/Watch";
 import MainContainer from "./Components/MainContainer";
 import VideoContainer from "./Components/VideoContainer";
 import HookDemo from "./Components/HookDemo";
+import Search from "./Components/Search";
 const appRoute = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +24,10 @@ const appRoute = createBrowserRouter([
         path: "/hook",
         element: <HookDemo />,
       },
+      {
+        path:"/results",
+        element:<Search/>
+      }
     ],
   },
 ]);
@@ -31,8 +35,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Header />
-        <RouterProvider router={appRoute} />
+        <RouterProvider router={appRoute}/>
       </div>
     </Provider>
   );

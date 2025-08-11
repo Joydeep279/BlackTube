@@ -2,22 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 @layer utilities {
-  /* Hide scrollbar by default */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  /* Hide scrollbar for Firefox & Webkit */
+  .no-scrollbar {
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE/Edge */
   }
-  .hover-scrollbar {
-    -ms-overflow-style: none; /* IE & Edge */
-    scrollbar-width: none;    /* Firefox */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;              /* Chrome/Safari */
   }
 
   /* Show scrollbar on hover */
-  .show-scrollbar::-webkit-scrollbar {
-    display: initial;
+  .hover-scrollbar:hover {
+    scrollbar-width: thin;                 /* Firefox */
+    scrollbar-color: auto auto;             /* Firefox */
   }
-  .show-scrollbar {
-    -ms-overflow-style: auto;
-    scrollbar-width: auto;
+  .hover-scrollbar:hover::-webkit-scrollbar {
+    display: block;                         /* Chrome/Safari */
   }
 }
-

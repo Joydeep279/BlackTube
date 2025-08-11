@@ -19,8 +19,10 @@ const VideoCardLayout = ({ info }) => {
 
       <div className="pl-1">
         <div className="font-sans font-medium text-base p-0 m-0">{title}</div>
-        <div className="font-medium text-base text-gray-600 pl-1">{channelTitle}</div>
-        <div className="font-normal text-base text-gray-600 pl-1">
+        <div className="font-medium text-base text-stone-700 pl-1">
+          {channelTitle}
+        </div>
+        <div className="font-medium text-base text-stone-700 pl-1">
           {newViewCount + viewCountUnit} views
         </div>
       </div>

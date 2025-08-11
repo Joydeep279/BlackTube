@@ -15,7 +15,8 @@ const VideoContainer = () => {
     videoContainerCSS = "flex flex-wrap gap-2 justify-start";
   } else {
     mainContainerCSS = "w-full";
-    videoCardLayoutCSS = "w-[425px] h-[21rem] text-wrap rounded-xl overflow-hidden";
+    videoCardLayoutCSS =
+      "w-[425px] h-[21rem] text-wrap rounded-xl overflow-hidden";
     videoContainerCSS = "flex flex-wrap gap-2.5 justify-center";
   }
   const [videolist, setVideoList] = useState(0);

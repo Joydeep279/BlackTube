@@ -3,6 +3,7 @@ import { toggleNavState } from "../utils/navState";
 import { useEffect, useState } from "react";
 import { addToCache } from "../utils/searchCache";
 import logo from "../img/YT-logo.png";
+import { Link } from "react-router-dom";
 const Header = () => {
   const [searchBoxStatus, setSearchBoxStatus] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -33,7 +34,7 @@ const Header = () => {
     dispatch(toggleNavState());
   };
   return (
-    <div className="flex flex-row justify-between px-0 items-start sticky top-0 pb-1 min-w-14 backdrop-blur-md bg-white/90">
+    <div className="flex flex-row justify-between px-0 items-start sticky top-0 pb-1 min-w-14 backdrop-blur-md bg-white/90 z-50">
       <div className="flex flex-row items-center gap-2.5 pt-2.5 ml-5">
         <img
           onClick={() => toggleNavStateFn()}
@@ -41,7 +42,13 @@ const Header = () => {
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
           alt="sideBTN"
         />
-        <img className="w-28 h-6" src={logo} alt="YouTube" />
+        <Link to={"/"}>
+          <img
+            className="w-28 h-6"
+            src={logo}
+            alt="YouTube"
+          />
+        </Link>
       </div>
       <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1">
         <div>
@@ -50,7 +57,9 @@ const Header = () => {
               setSearchBoxStatus(true);
             }}
             onBlur={() => {
-              setSearchBoxStatus(false);
+              setTimeout(() => {
+                setSearchBoxStatus(false);
+              }, 150);
             }}
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
@@ -60,10 +69,14 @@ const Header = () => {
           />
           {searchBoxStatus && searchText !== "" && (
             <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border">
-              {searchSuggestion.map((items) => (
-                <li className="py-2.5 px-3 hover:bg-slate-50 hover:shadow-sm rounded-lg">
-                  {items}
-                </li>
+              {searchSuggestion.map((items, index) => (
+                <Link to={`/results?search_query=${encodeURIComponent(items)}`}>
+                  <li
+                    key={index}
+                    className="py-2.5 px-3 hover:bg-slate-50 hover:shadow-sm rounded-lg">
+                    {items}
+                  </li>
+                </Link>
               ))}
             </ul>
           )}
@@ -85,7 +98,7 @@ const Header = () => {
         </button>
       </div>
       <div className="flex flex-row items-center gap-8 pr-5 pt-2">
-        <button className="flex justify-start items-center rounded-3xl pr-2 py-5 h-9 bg-gray-100">
+        <button className="flex justify-start items-center rounded-3xl px-1.5 py-3.5 h-9 bg-gray-100">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg"
             className="w-12 h-12"
@@ -94,7 +107,7 @@ const Header = () => {
           <span className="font-semibold">Create</span>
         </button>
         <img
-          className="rounded-full w-7 h-7"
+          className="rounded-full w-[1.5rem] h-[1.5rem]"
           src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
           alt="Notification"
         />

@@ -1,128 +1,46 @@
-const commentData = [
-  {
-    name: "Joydeep",
-    msg: "This is my youtube Comment!",
-    reply: [
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-    ],
-  },
-  {
-    name: "Joydeep",
-    msg: "This is my youtube Comment!",
-    reply: [
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [
-          {
-            name: "Joydeep",
-            msg: "This is my youtube Comment!",
-            reply: [],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Joydeep",
-    msg: "This is my youtube Comment!",
-    reply: [
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [
-          {
-            name: "Joydeep",
-            msg: "This is my youtube Comment!",
-            reply: [],
-          },
-        ],
-      },
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-    ],
-  },
-  {
-    name: "Joydeep",
-    msg: "This is my youtube Comment!",
-    reply: [
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-      {
-        name: "Joydeep",
-        msg: "This is my youtube Comment!",
-        reply: [],
-      },
-    ],
-  },
-];
-const CommentLayout = ({ data }) => {
-  if (Object.keys(data).length === 0) {
-    return;
-  }
-  const { name, msg } = data;
-  return (
-    <div className="bg-slate-50">
-      <div className="flex items-center gap-2">
-        <img
-          src="https://avatar.iran.liara.run/public/boy"
-          alt="profile-pic"
-          className="w-7 h-7 rounded-full"
-        />
-        <span className="text-base font-sans font-medium">{name}</span>
-      </div>
-      <span className="pl-10">{msg}</span>
-    </div>
-  );
-};
+import { useEffect, useState } from "react";
+import { apikey } from "../utils/constants";
+import { useSearchParams } from "react-router-dom";
+import CommentLayout from "./CommentLayout";
 
 const Comment = () => {
+  const [getVideoId] = useSearchParams("v");
+  const videoID = getVideoId.get("v");
+  console.log(videoID);
+
+  let [commentData, setCommentData] = useState([]);
+  async function getCommentData() {
+    const apiData = await fetch(
+      `https://www.googleapis.com/youtube/v3/commentThreads?key=${apikey}&textFormat=plainText&part=snippet&maxResults=100&videoId=` +
+        videoID
+    );
+    const data = await apiData.json();
+    commentData = data.items;
+    setCommentData(commentData);
+  }
+  useEffect(() => {
+    getCommentData();
+  }, []);
   return (
-    <div className="px-16 w-1/2">
-      <h1 className="font-bold text-xl">Comment</h1>
-      <div>
-        {commentData.map((items, index) => (
-          <CommentLayout data={items} key={index} />
+    <div>
+      <div className="flex items-center justify-start">
+        <h1 className="py-5 text-xl font-bold px-10 font-sans">
+          100 Comments
+        </h1>
+        <img src="https://cdn-icons-png.flaticon.com/512/10337/10337146.png"alt="sort"className="w-5 h-5"/>
+        <span className="pl-5 text-base font-medium font-sans">Sort By</span>
+      </div>
+      <div className="pl-10 flex gap-5 mt-2.5 mb-10 items-start">
+        <img
+          className="rounded-full w-8 h-8"
+          src="https://avatars.githubusercontent.com/u/109482893?v=4"
+          alt="User"
+        />
+        <input className="border-b w-1/2" type="text" placeholder="Add a Comment"></input>
+      </div>
+      <div className="flex flex-col gap-5 ml-16">
+        {commentData.map((items) => (
+          <CommentLayout info={items} key={items.id} />
         ))}
       </div>
     </div>

@@ -24,7 +24,7 @@ const LiveChatContainer = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="w-96 h-[500px] bg-slate-50 mt-2 rounded-xl px-2 py-2 flex gap-2 flex-col-reverse overflow-y-scroll shadow-md">
+      <div className="w-96 h-[450px] bg-slate-50 mt-2 rounded-xl px-2 py-2 flex gap-2 flex-col-reverse overflow-y-scroll shadow-md">
         {liveChat.map((items) => (
           <LiveChatLayout data={items} key={items.id} />
         ))}
@@ -39,6 +39,7 @@ const LiveChatContainer = () => {
           }
         }}>
         <input
+        placeholder="Enter the Text"
           type="text"
           className="w-4/5 px-5 py-0.5 outline-blue-400 rounded-l-xl outline-1 bg-gray-100 border shadow"
           value={typedMsg}
