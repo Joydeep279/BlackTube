@@ -10,20 +10,29 @@ const VideoCardLayout = ({ info }) => {
     viewCountUnit = " K";
   }
   return (
-    <Link to={"watch?v=" + info.id}>
-      <img
-        src={`https://img.youtube.com/vi/${info.id}/maxresdefault.jpg`}
-        alt="error"
-        className="w-full h-52 rounded-2xl"
-      />
+    <Link to={`watch?v=${info.id}`} className="group block w-full max-w-sm">
+      <div className="overflow-hidden rounded-xl">
+        <img
+          src={`https://img.youtube.com/vi/${info.id}/maxresdefault.jpg`}
+          alt={title}
+          className="w-full h-52 object-cover"
+        />
+      </div>
 
-      <div className="pl-1">
-        <div className="font-sans font-medium text-base p-0 m-0">{title}</div>
-        <div className="font-medium text-base text-stone-700 pl-1">
-          {channelTitle}
-        </div>
-        <div className="font-medium text-base text-stone-700 pl-1">
-          {newViewCount + viewCountUnit} views
+      <div className="flex pt-3 gap-3">
+        <img
+          src={`https://avatar.iran.liara.run/public?v=${info.id}`}
+          alt="profile-pic"
+          className="w-9 h-9 rounded-full flex-shrink-0"
+        />
+        <div className="flex flex-col">
+          <h3 className="font-semibold text-[15px] leading-snug line-clamp-2">
+            {title}
+          </h3>
+          <p className="text-sm font-medium text-gray-700">{channelTitle}</p>
+          <p className="text-sm font-medium text-gray-700">
+            {newViewCount + viewCountUnit} views
+          </p>
         </div>
       </div>
     </Link>

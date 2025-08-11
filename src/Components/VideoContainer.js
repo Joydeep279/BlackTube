@@ -11,7 +11,7 @@ const VideoContainer = () => {
   const isNavOpen = useSelector((store) => store.nav.isNavOpen);
   if (isNavOpen) {
     mainContainerCSS = "w-[82%] ";
-    videoCardLayoutCSS = "w-[400px] h-80 text-wrap rounded-xl overflow-hidden";
+    videoCardLayoutCSS = "w-[400px] h-[22.5rem]text-wrap rounded-xl overflow-hidden";
     videoContainerCSS = "flex flex-wrap gap-2 justify-start";
   } else {
     mainContainerCSS = "w-full";

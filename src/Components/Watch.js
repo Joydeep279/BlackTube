@@ -18,14 +18,15 @@ const Watch = () => {
       <div className="flex">
         <iframe
           className="mx-14 my-2 rounded-2xl w-[866px] h-[487px]"
-          title={"videoID" + videoID}
-          src={`https://www.youtube.com/embed/${videoID}`}
+          title={`video-${videoID}`}
+          src={`https://www.youtube.com/embed/${videoID}?autoplay=1&modestbranding=1&rel=0`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen></iframe>
+          allowFullScreen
+        />
         <LiveChatContainer />
       </div>
-      <VideoDetail/>
+      <VideoDetail />
       <Comment />
     </div>
   );

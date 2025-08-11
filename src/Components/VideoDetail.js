@@ -4,6 +4,17 @@ import { apikey } from "../utils/constants";
 import { useEffect } from "react";
 
 const VideoDetail = () => {
+  const [isDescOpen, setDescOpen] = useState(false);
+  let descTailwindConfig;
+  let descText;
+  if (isDescOpen) {
+    descTailwindConfig = "w-11/12 text-wrap  p-2.5 rounded-xl font-medium ";
+    descText = "Show Less";
+  } else {
+    descTailwindConfig =
+      "w-11/12 text-wrap p-2.5 rounded-xl h-32 overflow-hidden font-medium";
+    descText = "More...";
+  }
   const [getVideoId] = useSearchParams("v");
   const [videoInfo, setVideoInfo] = useState([]);
   const videoID = getVideoId.get("v");
@@ -29,7 +40,7 @@ const VideoDetail = () => {
               <img
                 src="https://avatar.iran.liara.run/public"
                 alt="logo"
-                className="h-7 w-7 rounded-full"
+                className="h-9 w-9 rounded-full"
               />
               <h1 className="font-semibold text-lg">
                 {videoInfo.channelTitle}
@@ -38,71 +49,82 @@ const VideoDetail = () => {
             <button className="px-3 py-1.5 rounded-2xl bg-gray-900 text-white font-sans font-medium border hover:bg-gray-800">
               Subscribe
             </button>
-          </div>
+          </div >
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/159/159766.png"
-                alt="Like"
-                className="w-5 h-5"
-              />
-              <span className="text-sm font-medium">1.2K</span>
-            </button>
-
-            <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/159/159775.png"
-                alt="Dislike"
-                className="w-5 h-5"
-              />
-              <span className="text-sm font-medium">23</span>
-            </button>
-
-            <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="1.5">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 12v7a1 1 0 0 0 1 1h14M16 6l-4-4-4 4M12 2v14"
+            <div className="flex items-center gap-4 border rounded-2xl">
+              <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/159/159766.png"
+                  alt="Like"
+                  className="w-5 h-5"
                 />
-              </svg>
-              <span className="text-lg font-medium">Share</span>
-            </button>
+                <span className="text-sm font-medium">1.2K</span>
+              </button>
 
-            <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="1.5">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 3v12m0 0l4-4m-4 4l-4-4m13 9H3"
+              <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/159/159775.png"
+                  alt="Dislike"
+                  className="w-5 h-5"
                 />
-              </svg>
-              <span className="text-lg font-medium">Download</span>
-            </button>
+                <span className="text-sm font-medium">23</span>
+              </button>
+            </div>
+            <div className="flex items-center gap-4 border rounded-2xl">
+              <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="1.5">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 12v7a1 1 0 0 0 1 1h14M16 6l-4-4-4 4M12 2v14"
+                  />
+                </svg>
+                <span className="text-base font-medium">Share</span>
+              </button>
+
+              <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="1.5">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 3v12m0 0l4-4m-4 4l-4-4m13 9H3"
+                  />
+                </svg>
+                <span className="text-base font-medium">Download</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
-      <p className="w-11/12 text-wrap bg-gray-100 p-2.5 rounded-xl h-40 overflow-y-hidden">
-        {videoInfo.description.split("\n").map((line, i) => (
-          <React.Fragment key={i}>
-            {line}
-            <br />
-          </React.Fragment>
-        ))}
-      </p>
+      <div className="bg-gray-100 rounded-xl p-2.5">
+        <p className={descTailwindConfig}>
+          {videoInfo.description.split("\n").map((line, i) => (
+            <React.Fragment key={i}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+        </p>
+        <span
+          className=" font-medium  px-2 cursor-pointer"
+          onClick={(e) => setDescOpen(!isDescOpen)}>
+          <br />
+          {descText}
+          <br />
+        </span>
+      </div>
     </div>
   );
 };

@@ -24,10 +24,12 @@ const Comment = () => {
   return (
     <div className="pl-5">
       <div className="flex items-center justify-start">
-        <h1 className="py-5 text-xl font-bold px-10 font-sans">
-          100 Comments
-        </h1>
-        <img src="https://cdn-icons-png.flaticon.com/512/10337/10337146.png"alt="sort"className="w-5 h-5"/>
+        <h1 className="py-5 text-xl font-bold px-10 font-sans">100 Comments</h1>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/10337/10337146.png"
+          alt="sort"
+          className="w-5 h-5"
+        />
         <span className="pl-5 text-base font-medium font-sans">Sort By</span>
       </div>
       <div className="pl-10 flex gap-5 mt-2.5 mb-10 items-start">
@@ -36,7 +38,10 @@ const Comment = () => {
           src="https://avatars.githubusercontent.com/u/109482893?v=4"
           alt="User"
         />
-        <input className="border-b w-1/2" type="text" placeholder="Add a Comment"></input>
+        <input
+          className="border-b-2 w-1/2 outline-none focus:border-b-2 focus:border-black"
+          type="text"
+          placeholder="Add a Comment"></input>
       </div>
       <div className="flex flex-col gap-5 ml-16">
         {commentData.map((items) => (
