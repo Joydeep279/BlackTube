@@ -1,6 +1,6 @@
 # BlackTube
 
-BlackTube is a sleek, JavaScript-powered video platform inspired by YouTube, built entirely with React and bootstrapped with Create React App. It provides a simple and intuitive user interface for browsing, searching, and playing videos.
+BlackTube is a sleek, JavaScript-powered video platform inspired by YouTube, built entirely with React and Tailwind with Create React App. It provides a simple and intuitive user interface for browsing, searching, and playing videos.
 
 ## Features
 
@@ -8,7 +8,6 @@ BlackTube is a sleek, JavaScript-powered video platform inspired by YouTube, bui
 - **Video Browsing**: Explore a collection of videos.
 - **Search Functionality**: Easily find videos by keywords.
 - **Video Playback**: Support for local or embedded video sources.
-- **Responsive Design**: Works seamlessly on desktop and mobile devices.
 - Built with React for easy customization and extension.
 
 ## Tech Stack
@@ -16,7 +15,7 @@ BlackTube is a sleek, JavaScript-powered video platform inspired by YouTube, bui
 - **Framework**: React
 - **Setup Tool**: Create React App
 - **Styling**: CSS (or specify if using modules, SASS, styled-components, etc.)
-- **Additional Libraries**: May include React Router for navigation, Axios for API calls, YouTube API integration (if applicable), state management with Redux or Context API.
+- **Additional Libraries**: May include React Router for navigation,API Polling, YouTube API integration (if applicable), state management with Redux.
 
 ## Getting Started
 
