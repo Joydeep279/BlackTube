@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { videoApi } from "../utils/constants";
 import VideoCardLayout from "./VideoCardLayout";
 import ChipBar from "./ChipBar";
 import { useSelector } from "react-redux";
@@ -21,7 +20,7 @@ const VideoContainer = () => {
   }
   const [videolist, setVideoList] = useState(0);
   async function getVideoData() {
-    const apiData = await fetch(videoApi);
+    const apiData = await fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw");
     const data = await apiData.json();
     setVideoList(data.items);
   }
@@ -29,7 +28,7 @@ const VideoContainer = () => {
     getVideoData();
   }, []);
   if (videolist === 0) {
-    return <div>Loading</div>;
+    return;
   }
   return (
     <div className={mainContainerCSS}>

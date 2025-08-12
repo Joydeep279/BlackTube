@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { apikey } from "../utils/constants";
 import { useEffect } from "react";
 
 const VideoDetail = () => {
@@ -8,11 +7,11 @@ const VideoDetail = () => {
   let descTailwindConfig;
   let descText;
   if (isDescOpen) {
-    descTailwindConfig = "w-11/12 text-wrap  p-2.5 rounded-xl font-medium ";
+    descTailwindConfig = "w-11/12 text-wrap  p-2.5 rounded-xl font-normal ";
     descText = "Show Less";
   } else {
     descTailwindConfig =
-      "w-11/12 text-wrap p-2.5 rounded-xl h-32 overflow-hidden font-medium";
+      "w-11/12 text-wrap p-2.5 rounded-xl h-32 overflow-hidden font-normal";
     descText = "More...";
   }
   const [getVideoId] = useSearchParams("v");
@@ -20,7 +19,7 @@ const VideoDetail = () => {
   const videoID = getVideoId.get("v");
   async function getVideoDetails() {
     const apiData = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=${videoID}&key=${apikey}`
+      `https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=${videoID}&key=AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw`
     );
     const detail = await apiData.json();
     setVideoInfo(detail.items[0].snippet);

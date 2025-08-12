@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { apikey } from "../utils/constants";
 import { useSearchParams } from "react-router-dom";
 import CommentLayout from "./CommentLayout";
 
@@ -11,7 +10,7 @@ const Comment = () => {
   let [commentData, setCommentData] = useState([]);
   async function getCommentData() {
     const apiData = await fetch(
-      `https://www.googleapis.com/youtube/v3/commentThreads?key=${apikey}&textFormat=plainText&part=snippet&maxResults=100&videoId=` +
+      `https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw&textFormat=plainText&part=snippet&maxResults=100&videoId=` +
         videoID
     );
     const data = await apiData.json();
