@@ -3,6 +3,8 @@ import { toggleNavState } from "../utils/navState";
 import { useEffect, useState } from "react";
 import { addToCache } from "../utils/searchCache";
 import logo from "../img/YT-logo.png";
+import githubLogo from "../img/Github.gif";
+import linkedinLogo from "../img/Linkedin.gif";
 import { Link } from "react-router-dom";
 const Header = () => {
   const [searchBoxStatus, setSearchBoxStatus] = useState(false);
@@ -43,11 +45,7 @@ const Header = () => {
           alt="sideBTN"
         />
         <Link to={"/"}>
-          <img
-            className="w-28 h-6"
-            src={logo}
-            alt="YouTube"
-          />
+          <img className="w-28 h-6" src={logo} alt="YouTube" />
         </Link>
       </div>
       <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1">
@@ -96,6 +94,18 @@ const Header = () => {
             className="w-5 h-5"
           />
         </button>
+      </div>
+      <div className="flex flex-row py-2.5 gap-2.5">
+        <a
+          href="https://github.com/Joydeep279/BlackTube"
+          className="bg-transparent">
+          <img src={githubLogo} alt="Github" className="w-8 h-8" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/joydeep-nath007"
+          className="bg-transparent">
+          <img src={linkedinLogo} alt="LinkedIN" className="w-8 h-8" />
+        </a>
       </div>
       <div className="flex flex-row items-center gap-8 pr-5 pt-2">
         <button className="flex justify-start items-center rounded-3xl px-1.5 py-3.5 h-9 bg-gray-100">
