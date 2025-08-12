@@ -49,7 +49,7 @@ const VideoDetail = () => {
             <button className="px-3 py-1.5 rounded-2xl bg-gray-900 text-white font-sans font-medium border hover:bg-gray-800">
               Subscribe
             </button>
-          </div >
+          </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-4 border rounded-2xl py-0.5">
               <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">

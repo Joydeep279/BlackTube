@@ -4,7 +4,7 @@ const SideBar = () => {
   const tailwindConfig_li =
     "text-center hover:bg-gray-100 rounded-xl cursor-pointer mb-1.5";
   const tailwindConfig_ul =
-    "w-4/5 font-medium font-sans from-neutral-400 border-b-2 text-sm";
+    "w-4/5 font-medium font-sans  border-b-2 text-sm";
   const navState = useSelector((store) => store.nav.isNavOpen);
   if (!navState) return null;
   return (

@@ -19,7 +19,7 @@ const VideoCardLayout = ({ info }) => {
         />
       </div>
 
-      <div className="flex pt-3 gap-3">
+      <div className="flex pt-3 gap-1.5">
         <img
           src={`https://avatar.iran.liara.run/public?v=${info.id}`}
           alt="profile-pic"
