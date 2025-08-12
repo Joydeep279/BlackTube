@@ -5,6 +5,8 @@ import Watch from "./Components/Watch";
 import MainContainer from "./Components/MainContainer";
 import VideoContainer from "./Components/VideoContainer";
 import Search from "./Components/Search";
+import { Provider } from 'react-redux';
+
 const appRoute = createBrowserRouter([
   {
     element: <MainContainer />,
