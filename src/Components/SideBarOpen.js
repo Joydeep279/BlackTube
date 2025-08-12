@@ -190,6 +190,7 @@ const SideBar = () => {
             <img
               src="https://cdn-icons-png.flaticon.com/512/9720/9720860.png"
               className="w-6 h-6"
+              alt="Courses"
             />
             <span>Courses</span>
           </div>
