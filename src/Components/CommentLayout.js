@@ -13,10 +13,10 @@ const CommentLayout = ({ info }) => {
           {authorDisplayName}
         </span>
       </div>
-      <span className="pl-10 text-gray-800 font-sans font-normal overflow-hidden">
+      <span className="text-gray-800 font-sans font-normal overflow-hidden">
         {textDisplay}
       </span>
-      <div className="ml-10 mt-2.5 flex gap-5 items-center">
+      <div className="mt-2.5 flex gap-5 items-center">
         <div className="flex gap-2.5 items-center text-gray-600 text-sm">
           <img
             src="https://cdn-icons-png.flaticon.com/512/159/159766.png"
