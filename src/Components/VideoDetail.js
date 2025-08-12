@@ -29,7 +29,7 @@ const VideoDetail = () => {
   useEffect(() => {
     getVideoDetails();
   }, []);
-  if (videoInfo.length == 0) return;
+  if (videoInfo.length === 0) return;
   return (
     <div className="w-2/3 flex items-start flex-col pl-16 gap-5">
       <div className="w-full flex items-start flex-col gap-5">
