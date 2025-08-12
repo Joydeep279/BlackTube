@@ -4,7 +4,7 @@ const SideBar = () => {
   const tailwindConfig_li =
     "text-center hover:bg-gray-100 rounded-xl cursor-pointer mb-1.5";
   const tailwindConfig_ul =
-    "font-medium w-4/5 font-sans from-neutral-400 border-b-2";
+    "w-4/5 font-medium font-sans from-neutral-400 border-b-2 text-sm";
   const navState = useSelector((store) => store.nav.isNavOpen);
   if (!navState) return null;
   return (
@@ -21,7 +21,7 @@ const SideBar = () => {
           </div>
         </li>
         <li className={tailwindConfig_li}>
-          <div className="flex gap-5 items-center py-2 px-1 ">
+          <div className="flex gap-5 items-center py-2 px-1">
             <img
               src="https://img.icons8.com/?size=512&id=h5l3jZXManlM&format=png"
               alt="shorts-icon"

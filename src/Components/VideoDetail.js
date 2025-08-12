@@ -34,7 +34,7 @@ const VideoDetail = () => {
     <div className="w-2/3 flex items-start flex-col pl-16 gap-5">
       <div className="w-full flex items-start flex-col gap-5">
         <h1 className="font-bold text-xl w-[866px]">{videoInfo.title}</h1>
-        <div className="flex justify-between w-11/12">
+        <div className="flex justify-between w-11/12 px-3.5">
           <div className="flex items-center justify-center gap-5">
             <div className="flex flex-row gap-1">
               <img
@@ -51,7 +51,7 @@ const VideoDetail = () => {
             </button>
           </div >
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-4 border rounded-2xl">
+            <div className="flex items-center gap-4 border rounded-2xl py-0.5">
               <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/159/159766.png"
