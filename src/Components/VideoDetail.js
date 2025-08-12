@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -8,7 +8,7 @@ const VideoDetail = () => {
   let descTailwindConfig;
   let descText;
   if (isDescOpen) {
-    descTailwindConfig = "w-11/12 text-wrap  p-2.5 rounded-xl font-normal ";
+    descTailwindConfig = "w-full text-wrap  p-2.5 rounded-xl font-normal ";
     descText = "Show Less";
   } else {
     descTailwindConfig =
@@ -33,7 +33,7 @@ const VideoDetail = () => {
     <div className="w-2/3 flex items-start flex-col pl-16 gap-5">
       <div className="w-full flex items-start flex-col gap-5">
         <h1 className="font-bold text-xl w-[866px]">{videoInfo.title}</h1>
-        <div className="flex justify-between w-11/12 px-3.5">
+        <div className="flex justify-between w-full px-3.5">
           <div className="flex items-center justify-center gap-5">
             <div className="flex flex-row gap-1">
               <img
