@@ -24,7 +24,6 @@ const VideoDetail = () => {
     );
     const detail = await apiData.json();
     setVideoInfo(detail.items[0].snippet);
-    console.log(detail.items[0].snippet);
   }
   useEffect(() => {
     getVideoDetails();
