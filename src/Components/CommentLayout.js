@@ -1,3 +1,4 @@
+import React from "react";
 const CommentLayout = ({ info }) => {
   const { authorProfileImageUrl, textDisplay, authorDisplayName, likeCount } =
     info.snippet.topLevelComment.snippet;

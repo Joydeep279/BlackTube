@@ -21,13 +21,9 @@ const appRoute = createBrowserRouter([
         element: <Watch />,
       },
       {
-        path: "/hook",
-        element: <HookDemo />,
+        path: "/results",
+        element: <Search />,
       },
-      {
-        path:"/results",
-        element:<Search/>
-      }
     ],
   },
 ]);
@@ -35,7 +31,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <RouterProvider router={appRoute}/>
+        <RouterProvider router={appRoute} />
       </div>
     </Provider>
   );
