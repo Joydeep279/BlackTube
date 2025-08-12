@@ -13,7 +13,7 @@ const Header = () => {
 
   async function callSearchAPI() {
     const apiData = await fetch(
-      `http://suggestqueries.google.com/complete/search?client=firefox&q=${searchText}`
+      `https://suggestqueries.google.com/complete/search?client=firefox&q=${searchText}`
     );
     const jsonData = await apiData.json();
     setSearchSuggestion(jsonData[1]);
