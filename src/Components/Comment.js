@@ -5,7 +5,6 @@ import CommentLayout from "./CommentLayout";
 const Comment = () => {
   const [getVideoId] = useSearchParams("v");
   const videoID = getVideoId.get("v");
-  console.log(videoID);
 
   let [commentData, setCommentData] = useState([]);
   async function getCommentData() {
