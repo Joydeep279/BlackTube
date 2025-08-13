@@ -95,13 +95,15 @@ const Header = () => {
           />
         </button>
       </div>
-      <div className="flex flex-row py-2.5 gap-2.5">
+      <div className="flex flex-row py-2.5 gap-5">
         <a
+          target="_blank"
           href="https://github.com/Joydeep279/BlackTube"
           className="bg-transparent">
           <img src={githubLogo} alt="Github" className="w-8 h-8" />
         </a>
         <a
+          target="_blank"
           href="https://www.linkedin.com/in/joydeep-nath007"
           className="bg-transparent">
           <img src={linkedinLogo} alt="LinkedIN" className="w-8 h-8" />
