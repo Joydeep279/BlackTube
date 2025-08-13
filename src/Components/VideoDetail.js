@@ -20,7 +20,7 @@ const VideoDetail = () => {
   const videoID = getVideoId.get("v");
   async function getVideoDetails() {
     const apiData = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=AIzaSyA81RTKw_9j8rtf_QicD7R7f8XNV_HPGY0&id=${videoID}`
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw&id=${videoID}`
     );
     const detail = await apiData.json();
     setVideoInfo(detail.items[0]);
