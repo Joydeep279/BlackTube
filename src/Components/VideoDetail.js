@@ -20,29 +20,33 @@ const VideoDetail = () => {
   const videoID = getVideoId.get("v");
   async function getVideoDetails() {
     const apiData = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=${videoID}&key=AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw`
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=AIzaSyA81RTKw_9j8rtf_QicD7R7f8XNV_HPGY0&id=${videoID}`
     );
     const detail = await apiData.json();
-    setVideoInfo(detail.items[0].snippet);
+    setVideoInfo(detail.items[0]);
+    console.log(videoInfo);
+    
   }
   useEffect(() => {
     getVideoDetails();
   }, []);
   if (videoInfo.length === 0) return;
   return (
-    <div className="w-2/3 flex items-start flex-col pl-16 gap-5">
-      <div className="w-full flex items-start flex-col gap-5">
-        <h1 className="font-bold text-xl w-[866px]">{videoInfo.title}</h1>
-        <div className="flex justify-between w-full px-3.5">
+    <div className="w-[57%] flex items-start flex-col ml-14 gap-5">
+      <div className="flex items-start flex-col gap-5 w-full">
+        <h1 className="font-bold text-xl w-full">
+              {videoInfo.snippet.localized.title}
+        </h1>
+        <div className="flex justify-between px-3.5 w-full">
           <div className="flex items-center justify-center gap-5">
             <div className="flex flex-row gap-1">
               <img
                 src="https://avatar.iran.liara.run/public"
                 alt="logo"
                 className="h-9 w-9 rounded-full"
-              />
+                />
               <h1 className="font-semibold text-lg">
-                {videoInfo.channelTitle}
+                {videoInfo.snippet.channelTitle}
               </h1>
             </div>
             <button className="px-3 py-1.5 rounded-2xl bg-gray-900 text-white font-sans font-medium border hover:bg-gray-800">
@@ -57,7 +61,9 @@ const VideoDetail = () => {
                   alt="Like"
                   className="w-5 h-5"
                 />
-                <span className="text-sm font-medium">1.2K</span>
+                <span className="text-sm font-medium">
+                  {videoInfo.statistics.likeCount}
+                </span>
               </button>
 
               <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
@@ -66,7 +72,6 @@ const VideoDetail = () => {
                   alt="Dislike"
                   className="w-5 h-5"
                 />
-                <span className="text-sm font-medium">23</span>
               </button>
             </div>
             <div className="flex items-center gap-4 border rounded-2xl">
@@ -107,9 +112,9 @@ const VideoDetail = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 rounded-xl p-2.5">
+      <div className="bg-gray-100 rounded-xl p-2.5 w-full">
         <p className={descTailwindConfig}>
-          {videoInfo.description.split("\n").map((line, i) => (
+          {videoInfo.snippet.description.split("\n").map((line, i) => (
             <React.Fragment key={i}>
               {line}
               <br />
