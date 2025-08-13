@@ -57,7 +57,7 @@ const Header = () => {
             onBlur={() => {
               setTimeout(() => {
                 setSearchBoxStatus(false);
-              }, 150);
+              }, 250);
             }}
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
