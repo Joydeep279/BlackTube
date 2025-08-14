@@ -8,11 +8,12 @@ const VideoDetail = () => {
   let descTailwindConfig;
   let descText;
   if (isDescOpen) {
-    descTailwindConfig = "w-full text-wrap  p-2.5 rounded-xl font-normal ";
+    descTailwindConfig =
+      "w-full text-wrap  p-2.5 rounded-xl font-medium text-sm text-gray-700";
     descText = "Show Less";
   } else {
     descTailwindConfig =
-      "w-11/12 text-wrap p-2.5 rounded-xl h-32 overflow-hidden font-normal";
+      "w-11/12 text-wrap p-2.5 rounded-xl h-32 overflow-hidden font-medium text-sm text-gray-700";
     descText = "More...";
   }
   const [getVideoId] = useSearchParams("v");
@@ -24,8 +25,6 @@ const VideoDetail = () => {
     );
     const detail = await apiData.json();
     setVideoInfo(detail.items[0]);
-    console.log(videoInfo);
-    
   }
   useEffect(() => {
     getVideoDetails();
@@ -35,7 +34,7 @@ const VideoDetail = () => {
     <div className="w-[57%] flex items-start flex-col ml-14 gap-5">
       <div className="flex items-start flex-col gap-5 w-full">
         <h1 className="font-bold text-xl w-full">
-              {videoInfo.snippet.localized.title}
+          {videoInfo.snippet.localized.title}
         </h1>
         <div className="flex justify-between px-3.5 w-full">
           <div className="flex items-center justify-center gap-5">
@@ -44,7 +43,7 @@ const VideoDetail = () => {
                 src="https://avatar.iran.liara.run/public"
                 alt="logo"
                 className="h-9 w-9 rounded-full"
-                />
+              />
               <h1 className="font-semibold text-lg">
                 {videoInfo.snippet.channelTitle}
               </h1>
@@ -112,8 +111,17 @@ const VideoDetail = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 rounded-xl p-2.5 w-full">
+      <div className="bg-gray-100 rounded-xl p-1.5 w-full">
         <p className={descTailwindConfig}>
+         <div className="flex flex-row gap-3.5 text-black">
+           <span className="text-sm font-medium">
+            {videoInfo.statistics.viewCount + " views"}
+          </span>
+          <span className="text-sm font-medium">
+            {new Date(videoInfo.snippet.publishedAt).toDateString()}
+          </span>
+         </div>
+          <br />
           {videoInfo.snippet.description.split("\n").map((line, i) => (
             <React.Fragment key={i}>
               {line}
