@@ -48,7 +48,7 @@ const Header = () => {
           <img className="w-28 h-6" src={logo} alt="YouTube" />
         </Link>
       </div>
-      <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1">
+      <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1 font-sans font-medium">
         <div>
           <input
             onFocus={() => {
@@ -66,7 +66,7 @@ const Header = () => {
             className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border-[0.5px] border-gray-300 focus:outline-indigo-200 outline-[0.2px]"
           />
           {searchBoxStatus && searchText !== "" && (
-            <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border">
+            <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border font-medium">
               {searchSuggestion.map((items, index) => (
                 <Link to={`/results?search_query=${encodeURIComponent(items)}`}>
                   <li
