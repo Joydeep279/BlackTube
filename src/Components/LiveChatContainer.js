@@ -4,7 +4,7 @@ import { addChat } from "../utils/LiveChatStore";
 import LiveChatLayout from "./LiveChatLayout";
 
 const LiveChatContainer = () => {
-  const [typedMsg, setTypedMsg] = useState();
+  const [typedMsg, setTypedMsg] = useState("");
   const liveChat = useSelector((store) => store.liveChat);
   const dispatch = useDispatch();
   async function pollLiveChatApi() {
@@ -13,9 +13,9 @@ const LiveChatContainer = () => {
     dispatch(addChat({ id: data.id, name: data.author, msg: data.quote }));
   }
   useEffect(() => {
-    const pollInterval = setInterval(() => {
+   const pollInterval = setInterval(() => {
       pollLiveChatApi();
-    }, 10000);
+    }, 5000);
 
     return () => {
       clearInterval(pollInterval);
@@ -39,13 +39,13 @@ const LiveChatContainer = () => {
           }
         }}>
         <input
-        placeholder="Enter the Text"
+          placeholder="Enter the Text"
           type="text"
           className="w-4/5 px-5 py-0.5 outline-blue-400 rounded-l-xl outline-1 bg-gray-100 border shadow"
           value={typedMsg}
           onChange={(e) => setTypedMsg(e.target.value)}></input>
         <button
-          className="w-1/5 h-8 rounded-r bg-gray-400 text-white font-mono font-medium"
+          className="w-1/5 h-8 rounded-r bg-black text-white font-mono font-medium hover:bg-gray-800"
           onClick={() => {
             if (typedMsg !== "") {
               dispatch(addChat({ id: -1, name: "Joydeep", msg: typedMsg }));

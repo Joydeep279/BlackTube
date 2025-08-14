@@ -1,4 +1,3 @@
-import React from "react";
 const CommentLayout = ({ info }) => {
   const { authorProfileImageUrl, textDisplay, authorDisplayName, likeCount } =
     info.snippet.topLevelComment.snippet;
@@ -8,13 +7,13 @@ const CommentLayout = ({ info }) => {
         <img
           src={authorProfileImageUrl}
           alt="profile-pic"
-          className="w-7 h-7 rounded-full"
+          className="w-5 h-5 rounded-full"
         />
-        <span className="text-base font-sans font-medium">
+        <span className="text-xs font-sans font-medium text-black">
           {authorDisplayName}
         </span>
       </div>
-      <span className="text-gray-800 font-sans font-normal overflow-hidden">
+      <span className="text-slate-800 font-sans text-sm overflow-hidden font-medium">
         {textDisplay}
       </span>
       <div className="mt-2.5 flex gap-5 items-center">
@@ -33,6 +32,7 @@ const CommentLayout = ({ info }) => {
             className="h-4 w-4 cursor-pointer"
           />
         </div>
+        <div className="font-medium text-sm">reply</div>
       </div>
     </div>
   );
