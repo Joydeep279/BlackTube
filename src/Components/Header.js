@@ -5,12 +5,13 @@ import { addToCache } from "../utils/searchCache";
 import logo from "../img/YT-logo.png";
 import githubLogo from "../img/Github.gif";
 import linkedinLogo from "../img/Linkedin.gif";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
   const [searchBoxStatus, setSearchBoxStatus] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [searchSuggestion, setSearchSuggestion] = useState([]);
   const searchCache = useSelector((store) => store.search);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   async function callSearchAPI() {
@@ -49,7 +50,12 @@ const Header = () => {
         </Link>
       </div>
       <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1 font-sans font-medium">
-        <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSearchBoxStatus(false);
+            navigate(`/results?search_query=${searchText}`);
+          }}>
           <input
             onFocus={() => {
               setSearchBoxStatus(true);
@@ -78,7 +84,7 @@ const Header = () => {
               ))}
             </ul>
           )}
-        </div>
+        </form>
 
         <button className="rounded-r-2xl border-none bg-gray-100 px-5 py-1">
           <img
