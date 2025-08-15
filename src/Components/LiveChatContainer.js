@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addChat } from "../utils/LiveChatStore";
 import LiveChatLayout from "./LiveChatLayout";
@@ -7,18 +7,19 @@ const LiveChatContainer = () => {
   const [typedMsg, setTypedMsg] = useState("");
   const liveChat = useSelector((store) => store.liveChat);
   const dispatch = useDispatch();
+  const pollIntervalRef = useRef(null);
   async function pollLiveChatApi() {
     const apiData = await fetch("https://dummyjson.com/quotes/random");
     const data = await apiData.json();
     dispatch(addChat({ id: data.id, name: data.author, msg: data.quote }));
   }
   useEffect(() => {
-   const pollInterval = setInterval(() => {
+    pollIntervalRef.current = setInterval(() => {
       pollLiveChatApi();
     }, 5000);
 
     return () => {
-      clearInterval(pollInterval);
+      clearInterval(pollIntervalRef.current);
     };
   }, []);
 
@@ -45,7 +46,7 @@ const LiveChatContainer = () => {
           value={typedMsg}
           onChange={(e) => setTypedMsg(e.target.value)}></input>
         <button
-          className="w-1/5 h-8 rounded-r bg-black text-white font-mono font-medium hover:bg-gray-800"
+          className="w-1/5 h-8 bg-black border-r rounded-l border-white text-white font-mono font-medium hover:bg-gray-800"
           onClick={() => {
             if (typedMsg !== "") {
               dispatch(addChat({ id: -1, name: "Joydeep", msg: typedMsg }));
@@ -53,6 +54,13 @@ const LiveChatContainer = () => {
             }
           }}>
           SEND
+        </button>
+        <button
+          className="w-1/5 h-8 rounded-r bg-black text-white font-mono font-medium hover:bg-gray-800"
+          onClick={() => {
+            clearInterval(pollIntervalRef.current);
+          }}>
+          STOP
         </button>
       </form>
     </div>
