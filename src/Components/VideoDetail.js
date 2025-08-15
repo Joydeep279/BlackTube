@@ -113,14 +113,14 @@ const VideoDetail = () => {
       </div>
       <div className="bg-gray-100 rounded-xl p-1.5 w-full">
         <p className={descTailwindConfig}>
-         <div className="flex flex-row gap-3.5 text-black text-base">
-           <span className="text-sm font-medium">
-            {videoInfo.statistics.viewCount + " views"}
-          </span>
-          <span className="text-sm font-medium">
-            {new Date(videoInfo.snippet.publishedAt).toDateString()}
-          </span>
-         </div>
+          <div className="flex flex-row gap-3.5 text-black text-base">
+            <span className="text-sm font-medium">
+              {videoInfo.statistics.viewCount + " views"}
+            </span>
+            <span className="text-sm font-medium">
+              {new Date(videoInfo.snippet.publishedAt).toDateString()}
+            </span>
+          </div>
           <br />
           {videoInfo.snippet.description.split("\n").map((line, i) => (
             <React.Fragment key={i}>
@@ -133,7 +133,7 @@ const VideoDetail = () => {
           className=" font-medium  px-2 cursor-pointer"
           onClick={(e) => setDescOpen(!isDescOpen)}>
           <br />
-          {descText}
+          <span>{descText}</span>
           <br />
         </span>
       </div>

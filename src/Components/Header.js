@@ -73,13 +73,13 @@ const Header = () => {
             className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border border-gray-300 focus:border-blue-500 outline-none placeholder:font-normal"
           />
           {searchBoxStatus && searchText !== "" && (
-            <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border">
+            <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border shadow-md">
               {searchSuggestion.map((items, index) => (
                 <Link to={`/results?search_query=${encodeURIComponent(items)}`}>
                   <li
                     key={index}
                     className="py-2.5 px-1 hover:bg-slate-50 hover:border rounded-lg">
-                    <img src={searchIcon} className="w-7 h-7 inline mr-2.5" />
+                    <img src={searchIcon} className="w-5 h-5 inline mr-2.5" alt="search-icon"/>
                     {items}
                   </li>
                 </Link>
