@@ -2,7 +2,7 @@ const CommentLayout = ({ info }) => {
   const { authorProfileImageUrl, textDisplay, authorDisplayName, likeCount } =
     info.snippet.topLevelComment.snippet;
   return (
-    <div className="w-1/2 h-24 rounded-lg">
+    <div className="w-1/2 h-auto rounded-lg">
       <div className="flex items-start gap-2">
         <img
           src={authorProfileImageUrl}
