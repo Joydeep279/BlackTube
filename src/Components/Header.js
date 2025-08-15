@@ -5,6 +5,7 @@ import { addToCache } from "../utils/searchCache";
 import logo from "../img/YT-logo.png";
 import githubLogo from "../img/Github.gif";
 import linkedinLogo from "../img/Linkedin.gif";
+import crossIcon from "../img/cross-icon.svg";
 import searchIcon from "../img/search-icon.svg";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,6 +18,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const suggestionsRef = useRef(null);
+  const inputRef = useRef(null);
 
   async function callSearchAPI() {
     const apiData = await fetch(
@@ -41,7 +43,7 @@ const Header = () => {
 
   useEffect(() => {
     if (searchBoxStatus && searchSuggestion.length > 0) {
-      setActiveSuggestionIndex(-1); // Reset index when suggestions change
+      setActiveSuggestionIndex(-1);
     }
   }, [searchSuggestion]);
 
@@ -52,20 +54,15 @@ const Header = () => {
   const handleKeyDown = (e) => {
     if (!searchBoxStatus || searchSuggestion.length === 0) return;
 
-    // Down arrow
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setActiveSuggestionIndex((prev) =>
         prev < searchSuggestion.length - 1 ? prev + 1 : prev
       );
-    }
-    // Up arrow
-    else if (e.key === "ArrowUp") {
+    } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setActiveSuggestionIndex((prev) => (prev > -1 ? prev - 1 : prev));
-    }
-    // Enter
-    else if (e.key === "Enter" && activeSuggestionIndex >= 0) {
+    } else if (e.key === "Enter" && activeSuggestionIndex >= 0) {
       e.preventDefault();
       const selectedSuggestion = searchSuggestion[activeSuggestionIndex];
       setSearchText(selectedSuggestion);
@@ -80,6 +77,12 @@ const Header = () => {
     setSearchText(suggestion);
     setSearchBoxStatus(false);
     navigate(`/results?search_query=${encodeURIComponent(suggestion)}`);
+  };
+
+  const clearSearch = () => {
+    setSearchText("");
+    setSearchSuggestion([]);
+    inputRef.current.focus();
   };
 
   return (
@@ -102,23 +105,38 @@ const Header = () => {
             setSearchBoxStatus(false);
             navigate(`/results?search_query=${encodeURIComponent(searchText)}`);
           }}>
-          <input
-            onFocus={() => {
-              setSearchBoxStatus(true);
-              setActiveSuggestionIndex(-1);
-            }}
-            onBlur={() => {
-              setTimeout(() => {
-                setSearchBoxStatus(false);
-              }, 250);
-            }}
-            onKeyDown={handleKeyDown}
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            placeholder="Search"
-            type="text"
-            className="w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border border-gray-300 focus:border-blue-500 outline-none placeholder:font-normal"
-          />
+          <div className="relative">
+            <input
+              ref={inputRef}
+              onFocus={() => {
+                setSearchBoxStatus(true);
+                setActiveSuggestionIndex(-1);
+              }}
+              onBlur={() => {
+                setTimeout(() => {
+                  setSearchBoxStatus(false);
+                }, 250);
+              }}
+              onKeyDown={handleKeyDown}
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="Search"
+              type="text"
+              className="w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border border-gray-300 focus:border-blue-500 outline-none placeholder:font-normal"
+            />
+            {searchText && (
+              <button
+                type="button"
+                onClick={clearSearch}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                <img
+                  className="w-5 h-5 mix-blend-multiply"
+                  src={crossIcon}
+                  alt="⛌"
+                />
+              </button>
+            )}
+          </div>
           {searchBoxStatus &&
             searchText !== "" &&
             searchSuggestion.length > 0 && (
@@ -134,7 +152,7 @@ const Header = () => {
                     onMouseDown={() => handleSuggestionClick(item)}>
                     <img
                       src={searchIcon}
-                      className="w-5 h-5 inline mr-2.5 mix-blend-multiply"
+                      className="w-5 h-5 inline mr-2.5"
                       alt="search-icon"
                     />
                     {item}
@@ -144,14 +162,16 @@ const Header = () => {
             )}
         </form>
 
-        <button className="rounded-r-2xl border-none bg-gray-100 px-5 py-1">
+        <button
+          type="submit"
+          className="rounded-r-2xl border-none bg-gray-100 px-5 py-1 hover:bg-gray-200">
           <img
             className="w-7 h-8 mix-blend-multiply"
             alt="Search"
             src={searchIcon}
           />
         </button>
-        <button className="rounded-full bg-gray-100 ml-5 p-3">
+        <button className="rounded-full bg-gray-100 ml-5 p-3 hover:bg-gray-200">
           <img
             src="https://cdn-icons-png.flaticon.com/512/566/566100.png"
             alt="useMic"
@@ -174,7 +194,7 @@ const Header = () => {
         </a>
       </div>
       <div className="flex flex-row items-center gap-8 pr-5 pt-2">
-        <button className="flex justify-start items-center rounded-3xl px-1.5 py-3.5 h-9 bg-gray-100">
+        <button className="flex justify-start items-center rounded-3xl px-1.5 py-3.5 h-9 bg-gray-100 hover:bg-gray-200">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg"
             className="w-12 h-12"
@@ -183,13 +203,13 @@ const Header = () => {
           <span className="font-semibold">Create</span>
         </button>
         <img
-          className="rounded-full w-[1.5rem] h-[1.5rem]"
+          className="rounded-full w-[1.5rem] h-[1.5rem] cursor-pointer"
           src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
           alt="Notification"
         />
 
         <img
-          className="rounded-full w-8 h-8"
+          className="rounded-full w-8 h-8 cursor-pointer"
           src="https://avatars.githubusercontent.com/u/109482893?v=4"
           alt="User"
         />
