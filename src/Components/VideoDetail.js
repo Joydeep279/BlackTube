@@ -9,11 +9,11 @@ const VideoDetail = () => {
   let descText;
   if (isDescOpen) {
     descTailwindConfig =
-      "w-full text-wrap  p-2.5 rounded-xl font-medium text-sm text-gray-800";
+      "w-full text-wrap  p-2.5 rounded-xl font-medium text-sm text-gray-700";
     descText = "Show Less";
   } else {
     descTailwindConfig =
-      "w-11/12 text-wrap p-2.5 rounded-xl h-32 overflow-hidden font-medium text-sm text-gray-800";
+      "w-11/12 text-wrap p-2.5 rounded-xl h-32 overflow-hidden font-medium text-sm text-gray-700";
     descText = "More...";
   }
   const [getVideoId] = useSearchParams("v");
