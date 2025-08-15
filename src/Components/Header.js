@@ -50,7 +50,7 @@ const Header = () => {
           <img className="w-28 h-6" src={logo} alt="YouTube" />
         </Link>
       </div>
-      <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1 font-sans font-medium">
+      <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1 font-sans font-medium text-gray-800">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -73,12 +73,13 @@ const Header = () => {
             className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border border-gray-300 focus:border-blue-500 outline-none placeholder:font-normal"
           />
           {searchBoxStatus && searchText !== "" && (
-            <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border font-medium">
+            <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border">
               {searchSuggestion.map((items, index) => (
                 <Link to={`/results?search_query=${encodeURIComponent(items)}`}>
                   <li
                     key={index}
-                    className="py-2.5 px-3 hover:bg-slate-50 hover:shadow-sm rounded-lg">
+                    className="py-2.5 px-1 hover:bg-slate-50 hover:border rounded-lg">
+                    <img src={searchIcon} className="w-7 h-7 inline mr-2.5" />
                     {items}
                   </li>
                 </Link>
@@ -106,13 +107,13 @@ const Header = () => {
         <a
           target="_blank"
           href="https://github.com/Joydeep279/BlackTube"
-          className="bg-transparent">
+          className="bg-transparent mix-blend-multiply">
           <img src={githubLogo} alt="Github" className="w-8 h-8" />
         </a>
         <a
           target="_blank"
           href="https://www.linkedin.com/in/joydeep-nath007"
-          className="bg-transparent">
+          className="bg-transparent mix-blend-multiply">
           <img src={linkedinLogo} alt="LinkedIN" className="w-8 h-8" />
         </a>
       </div>
