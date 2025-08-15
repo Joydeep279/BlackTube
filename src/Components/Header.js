@@ -5,6 +5,7 @@ import { addToCache } from "../utils/searchCache";
 import logo from "../img/YT-logo.png";
 import githubLogo from "../img/Github.gif";
 import linkedinLogo from "../img/Linkedin.gif";
+import searchIcon from "../img/search-icon.svg";
 import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
   const [searchBoxStatus, setSearchBoxStatus] = useState(false);
@@ -88,9 +89,9 @@ const Header = () => {
 
         <button className="rounded-r-2xl border-none bg-gray-100 px-5 py-1">
           <img
-            className="w-6 h-8"
+            className="w-7 h-8 mix-blend-multiply"
             alt="Search"
-            src="https://static.thenounproject.com/png/search-icon-icon-629578-512.png"
+            src={searchIcon}
           />
         </button>
         <button className="rounded-full bg-gray-100 ml-5 p-3">
