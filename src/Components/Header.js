@@ -69,7 +69,7 @@ const Header = () => {
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search"
             type="text"
-            className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border-[0.5px] border-gray-300 focus:outline-indigo-200 outline-[0.2px]"
+            className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border-[0.5px] border-gray-300 focus:outline-indigo-200 outline-[0.2px] placeholder:font-normal"
           />
           {searchBoxStatus && searchText !== "" && (
             <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border font-medium">
