@@ -1,19 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleNavState } from "../utils/navState";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { addToCache } from "../utils/searchCache";
 import logo from "../img/YT-logo.png";
 import githubLogo from "../img/Github.gif";
 import linkedinLogo from "../img/Linkedin.gif";
 import searchIcon from "../img/search-icon.svg";
 import { Link, useNavigate } from "react-router-dom";
+
 const Header = () => {
   const [searchBoxStatus, setSearchBoxStatus] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [searchSuggestion, setSearchSuggestion] = useState([]);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const searchCache = useSelector((store) => store.search);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const suggestionsRef = useRef(null);
 
   async function callSearchAPI() {
     const apiData = await fetch(
@@ -23,20 +26,62 @@ const Header = () => {
     setSearchSuggestion(jsonData[1]);
     dispatch(addToCache({ [searchText]: jsonData[1] }));
   }
+
   useEffect(() => {
     const apiTimer = setTimeout(() => {
       if (searchCache[searchText]) {
         setSearchSuggestion(searchCache[searchText]);
-      } else callSearchAPI();
+      } else if (searchText) callSearchAPI();
     }, 300);
 
     return () => {
       clearTimeout(apiTimer);
     };
   }, [searchText]);
+
+  useEffect(() => {
+    if (searchBoxStatus && searchSuggestion.length > 0) {
+      setActiveSuggestionIndex(-1); // Reset index when suggestions change
+    }
+  }, [searchSuggestion]);
+
   const toggleNavStateFn = () => {
     dispatch(toggleNavState());
   };
+
+  const handleKeyDown = (e) => {
+    if (!searchBoxStatus || searchSuggestion.length === 0) return;
+
+    // Down arrow
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveSuggestionIndex((prev) =>
+        prev < searchSuggestion.length - 1 ? prev + 1 : prev
+      );
+    }
+    // Up arrow
+    else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveSuggestionIndex((prev) => (prev > -1 ? prev - 1 : prev));
+    }
+    // Enter
+    else if (e.key === "Enter" && activeSuggestionIndex >= 0) {
+      e.preventDefault();
+      const selectedSuggestion = searchSuggestion[activeSuggestionIndex];
+      setSearchText(selectedSuggestion);
+      setSearchBoxStatus(false);
+      navigate(
+        `/results?search_query=${encodeURIComponent(selectedSuggestion)}`
+      );
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchText(suggestion);
+    setSearchBoxStatus(false);
+    navigate(`/results?search_query=${encodeURIComponent(suggestion)}`);
+  };
+
   return (
     <div className="flex flex-row justify-between px-0 items-start sticky top-0 pb-1 min-w-14 backdrop-blur-md bg-white/90 z-50">
       <div className="flex flex-row items-center gap-2.5 pt-2.5 ml-5">
@@ -50,42 +95,53 @@ const Header = () => {
           <img className="w-28 h-6" src={logo} alt="YouTube" />
         </Link>
       </div>
-      <div className="flex flex-row items-center rounded-xl  border-1 border-solid pt-1 font-sans font-medium text-gray-800">
+      <div className="flex flex-row items-center rounded-xl border-1 border-solid pt-1 font-sans font-medium text-gray-800">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             setSearchBoxStatus(false);
-            navigate(`/results?search_query=${searchText}`);
+            navigate(`/results?search_query=${encodeURIComponent(searchText)}`);
           }}>
           <input
             onFocus={() => {
               setSearchBoxStatus(true);
+              setActiveSuggestionIndex(-1);
             }}
             onBlur={() => {
               setTimeout(() => {
                 setSearchBoxStatus(false);
               }, 250);
             }}
+            onKeyDown={handleKeyDown}
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search"
             type="text"
-            className=" w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border border-gray-300 focus:border-blue-500 outline-none placeholder:font-normal"
+            className="w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border border-gray-300 focus:border-blue-500 outline-none placeholder:font-normal"
           />
-          {searchBoxStatus && searchText !== "" && (
-            <ul className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border shadow-md">
-              {searchSuggestion.map((items, index) => (
-                <Link to={`/results?search_query=${encodeURIComponent(items)}`}>
+          {searchBoxStatus &&
+            searchText !== "" &&
+            searchSuggestion.length > 0 && (
+              <ul
+                ref={suggestionsRef}
+                className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border shadow-md">
+                {searchSuggestion.map((item, index) => (
                   <li
                     key={index}
-                    className="py-2.5 px-1 hover:bg-slate-50 hover:border rounded-lg">
-                    <img src={searchIcon} className="w-5 h-5 inline mr-2.5" alt="search-icon"/>
-                    {items}
+                    className={`py-2.5 px-1 hover:bg-slate-50 hover:border rounded-lg ${
+                      index === activeSuggestionIndex ? "bg-slate-100" : ""
+                    }`}
+                    onMouseDown={() => handleSuggestionClick(item)}>
+                    <img
+                      src={searchIcon}
+                      className="w-5 h-5 inline mr-2.5 mix-blend-multiply"
+                      alt="search-icon"
+                    />
+                    {item}
                   </li>
-                </Link>
-              ))}
-            </ul>
-          )}
+                ))}
+              </ul>
+            )}
         </form>
 
         <button className="rounded-r-2xl border-none bg-gray-100 px-5 py-1">
