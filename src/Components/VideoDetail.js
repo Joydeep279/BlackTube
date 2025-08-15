@@ -113,7 +113,7 @@ const VideoDetail = () => {
       </div>
       <div className="bg-gray-100 rounded-xl p-1.5 w-full">
         <p className={descTailwindConfig}>
-         <div className="flex flex-row gap-3.5 text-black">
+         <div className="flex flex-row gap-3.5 text-black text-base">
            <span className="text-sm font-medium">
             {videoInfo.statistics.viewCount + " views"}
           </span>
