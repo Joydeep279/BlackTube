@@ -7,7 +7,7 @@ const CommentLayout = ({ info }) => {
         <img
           src={authorProfileImageUrl}
           alt="profile-pic"
-          className="w-5 h-5 rounded-full"
+          className="w-6 h-6 rounded-full"
         />
         <span className="text-xs font-sans font-medium text-black">
           {authorDisplayName}
