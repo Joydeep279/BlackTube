@@ -13,7 +13,7 @@ const CommentLayout = ({ info }) => {
           {authorDisplayName}
         </span>
       </div>
-      <span className="text-slate-800 font-sans text-sm overflow-hidden font-medium">
+      <span className="text-slate-800 font-sans text-sm overflow-hidden font-medium pl-10">
         {textDisplay}
       </span>
       <div className="mt-2.5 flex gap-5 items-center">
