@@ -11,7 +11,7 @@ const VideoCardLayout = ({ info }) => {
   }
   return (
     <Link to={`watch?v=${info.id}`} className="group block w-full max-w-sm">
-      <div className="overflow-hidden rounded-xl hover:rounded transition-all">
+      <div className="overflow-hidden rounded hover:rounded-2xl transition-all duration-300">
         <img
           src={`https://img.youtube.com/vi/${info.id}/maxresdefault.jpg`}
           alt={title}
