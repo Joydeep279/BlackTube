@@ -163,11 +163,9 @@ const Header = () => {
         </form>
 
         <button
-        onClick={(e)=>{
-          navigate(
-        `/results?search_query=${searchText}`
-      );
-        }}
+          onClick={(e) => {
+            navigate(`/results?search_query=${searchText}`);
+          }}
           type="submit"
           className="rounded-r-2xl border-none bg-gray-100 px-5 py-1 hover:bg-gray-200">
           <img
@@ -189,13 +187,13 @@ const Header = () => {
           target="_blank"
           href="https://github.com/Joydeep279/BlackTube"
           className="bg-transparent mix-blend-multiply">
-          <img src={githubLogo} alt="Github" className="w-7 h-7" />
+          <img src={githubLogo} alt="Github" className="w-8 h-8" />
         </a>
         <a
           target="_blank"
           href="https://www.linkedin.com/in/joydeep-nath007"
           className="bg-transparent mix-blend-multiply">
-          <img src={linkedinLogo} alt="LinkedIN" className="w-8 h-8" />
+          <img src={linkedinLogo} alt="LinkedIN" className="w-9 h-9" />
         </a>
       </div>
       <div className="flex flex-row items-center gap-8 pr-5 pt-2">
