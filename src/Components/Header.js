@@ -163,6 +163,11 @@ const Header = () => {
         </form>
 
         <button
+        onClick={(e)=>{
+          navigate(
+        `/results?search_query=${searchText}`
+      );
+        }}
           type="submit"
           className="rounded-r-2xl border-none bg-gray-100 px-5 py-1 hover:bg-gray-200">
           <img
