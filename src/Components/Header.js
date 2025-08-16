@@ -95,7 +95,7 @@ const Header = () => {
           alt="sideBTN"
         />
         <Link to={"/"}>
-          <img className="w-28 h-6" src={logo} alt="YouTube" />
+          <img className="w-[120px] h-6" src={logo} alt="YouTube" />
         </Link>
       </div>
       <div className="flex flex-row items-center rounded-xl border-1 border-solid pt-1 font-sans font-medium text-gray-800">
@@ -184,12 +184,12 @@ const Header = () => {
           />
         </button>
       </div>
-      <div className="flex flex-row py-2.5 gap-5">
+      <div className="flex flex-row py-2.5 gap-5 items-center">
         <a
           target="_blank"
           href="https://github.com/Joydeep279/BlackTube"
           className="bg-transparent mix-blend-multiply">
-          <img src={githubLogo} alt="Github" className="w-8 h-8" />
+          <img src={githubLogo} alt="Github" className="w-7 h-7" />
         </a>
         <a
           target="_blank"
