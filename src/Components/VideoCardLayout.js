@@ -10,16 +10,17 @@ const VideoCardLayout = ({ info }) => {
     viewCountUnit = " K";
   }
   return (
-    <Link to={`watch?v=${info.id}`} className="group block w-full max-w-[400px]">
-      <div className="overflow-hidden rounded-xl hover:rounded transition-all duration-300">
+    <Link to={`watch?v=${info.id}`} className="group block w-full max-w-[400px] touch-manipulation">
+      <div className="overflow-hidden rounded-lg md:rounded-xl hover:rounded transition-all duration-300">
         <img
           src={`https://img.youtube.com/vi/${info.id}/maxresdefault.jpg`}
           alt={title}
           className="w-full aspect-video object-cover"
+          loading="lazy"
         />
       </div>
 
-      <div className="flex pt-3 gap-2 px-1">
+      <div className="flex pt-2 md:pt-3 gap-2 px-1">
         <img
           src={`https://avatar.iran.liara.run/public?v=${info.id}`}
           alt="profile-pic"

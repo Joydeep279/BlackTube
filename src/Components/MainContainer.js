@@ -6,7 +6,7 @@ const MainContainer = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <div className="flex flex-col md:flex-row w-full">
+      <div className="flex flex-col md:flex-row w-full mt-14">
         <SideBar />
         <Outlet />
       </div>

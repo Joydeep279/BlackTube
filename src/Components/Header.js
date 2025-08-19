@@ -86,26 +86,30 @@ const Header = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-between px-2 md:px-4 items-center md:items-start sticky top-0 pb-1 min-w-14 backdrop-blur-md bg-white/90 z-50">
-      <div className="flex flex-row items-center gap-2.5 pt-2.5">
+    <div className="flex flex-row justify-between items-center fixed top-0 w-full h-14 bg-white z-50 border-b border-gray-200 px-4">
+      {/* Left Section - Logo and Menu */}
+      <div className="flex items-center gap-4">
         <img
           onClick={() => toggleNavStateFn()}
           className="w-6 h-6 md:w-8 md:h-8 cursor-pointer"
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
-          alt="sideBTN"
+          alt="Menu"
         />
         <Link to={"/"}>
-          <img className="w-[90px] md:w-[120px] h-5 md:h-6" src={logo} alt="YouTube" />
+          <img className="h-5 md:h-6" src={logo} alt="YouTube" />
         </Link>
       </div>
-      <div className="flex flex-row items-center rounded-xl border-1 border-solid pt-1 font-sans font-medium text-gray-800">
+
+      {/* Center Section - Search (Hidden on Mobile) */}
+      <div className="hidden md:flex flex-1 justify-center max-w-2xl">
         <form
+          className="flex w-full max-w-[600px]"
           onSubmit={(e) => {
             e.preventDefault();
             setSearchBoxStatus(false);
             navigate(`/results?search_query=${encodeURIComponent(searchText)}`);
           }}>
-          <div className="relative">
+          <div className="relative flex-1">
             <input
               ref={inputRef}
               onFocus={() => {
@@ -122,102 +126,103 @@ const Header = () => {
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search"
               type="text"
-              className="w-[200px] sm:w-[300px] md:w-[400px] lg:w-[525px] h-8 md:h-10 rounded-l-2xl border-r-2 px-3 md:px-5 py-1 border border-gray-300 focus:border-blue-500 outline-none placeholder:font-normal"
+              className="w-full h-10 rounded-l-full border border-gray-300 px-4 focus:border-blue-500 outline-none"
             />
             {searchText && (
               <button
                 type="button"
                 onClick={clearSearch}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
-                <img
-                  className="w-4 h-4 mix-blend-multiply"
-                  src={crossIcon}
-                  alt="⛌"
-                />
+                <img className="w-4 h-4" src={crossIcon} alt="Clear" />
               </button>
             )}
           </div>
-          {searchBoxStatus &&
-            searchText !== "" &&
-            searchSuggestion.length > 0 && (
-              <ul
-                ref={suggestionsRef}
-                className="fixed bg-white w-[200px] sm:w-[300px] md:w-[400px] lg:w-[525px] rounded-xl px-2 py-1 my-1 font-sans border shadow-md">
-                {searchSuggestion.map((item, index) => (
-                  <li
-                    key={index}
-                    className={`py-2 md:py-2.5 px-1 hover:bg-slate-50 hover:border rounded-lg text-sm md:text-base ${
-                      index === activeSuggestionIndex ? "bg-slate-100" : ""
-                    }`}
-                    onMouseDown={() => handleSuggestionClick(item)}>
-                    <img
-                      src={searchIcon}
-                      className="w-4 h-4 md:w-5 md:h-5 inline mr-2"
-                      alt="search-icon"
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            )}
+          <button
+            type="submit"
+            className="px-6 bg-gray-100 border border-l-0 border-gray-300 rounded-r-full hover:bg-gray-200">
+            <img className="w-5 h-5" alt="Search" src={searchIcon} />
+          </button>
+          {searchBoxStatus && searchText !== "" && searchSuggestion.length > 0 && (
+            <ul
+              ref={suggestionsRef}
+              className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl py-2 border shadow-lg max-w-[600px] mx-auto">
+              {searchSuggestion.map((item, index) => (
+                <li
+                  key={index}
+                  className={`py-2 px-4 hover:bg-gray-100 cursor-pointer ${
+                    index === activeSuggestionIndex ? "bg-gray-100" : ""
+                  }`}
+                  onMouseDown={() => handleSuggestionClick(item)}>
+                  <div className="flex items-center gap-3">
+                    <img src={searchIcon} className="w-4 h-4" alt="search" />
+                    <span>{item}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
         </form>
-
-        <button
-          onClick={(e) => {
-            navigate(`/results?search_query=${searchText}`);
-          }}
-          type="submit"
-          className="rounded-r-2xl border-none bg-gray-100 px-3 md:px-5 py-1 hover:bg-gray-200">
-          <img
-            className="w-5 h-6 md:w-7 md:h-8 mix-blend-multiply"
-            alt="Search"
-            src={searchIcon}
-          />
-        </button>
-        <button className="hidden md:block rounded-full bg-gray-100 ml-5 p-2 md:p-3 hover:bg-gray-200">
+        <button className="ml-4 p-2.5 rounded-full hover:bg-gray-100">
           <img
             src="https://cdn-icons-png.flaticon.com/512/566/566100.png"
-            alt="useMic"
-            className="w-4 h-4 md:w-5 md:h-5"
+            alt="Voice Search"
+            className="w-5 h-5"
           />
         </button>
       </div>
-      <div className="hidden md:flex flex-row py-2.5 gap-3 md:gap-5 items-center">
-        <a
-          target="_blank"
-          href="https://github.com/Joydeep279/BlackTube"
-          className="bg-transparent mix-blend-multiply">
-          <img src={githubLogo} alt="Github" className="w-6 h-6 md:w-8 md:h-8" />
-        </a>
-        <a
-          target="_blank"
-          href="https://www.linkedin.com/in/joydeep-nath007"
-          className="bg-transparent mix-blend-multiply">
-          <img src={linkedinLogo} alt="LinkedIN" className="w-7 h-7 md:w-9 md:h-9" />
-        </a>
-      </div>
-      <div className="flex flex-row items-center gap-4 md:gap-8 px-2 md:pr-5 pt-2">
-        <button className="hidden md:flex justify-start items-center rounded-3xl px-1.5 py-3.5 h-9 bg-gray-100 hover:bg-gray-200">
+
+      {/* Right Section - Icons */}
+      <div className="flex items-center gap-3 md:gap-4">
+        {/* Search Icon (Mobile Only) */}
+        <button className="md:hidden p-2 hover:bg-gray-100 rounded-full" onClick={() => navigate('/search')}>
+          <img className="w-6 h-6" alt="Search" src={searchIcon} />
+        </button>
+        
+        {/* Social Links (Desktop Only) */}
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            target="_blank"
+            href="https://github.com/Joydeep279/BlackTube"
+            className="hover:bg-gray-100 p-2 rounded-full">
+            <img src={githubLogo} alt="Github" className="w-6 h-6" />
+          </a>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/joydeep-nath007"
+            className="hover:bg-gray-100 p-2 rounded-full">
+            <img src={linkedinLogo} alt="LinkedIn" className="w-6 h-6" />
+          </a>
+        </div>
+
+        {/* Create Button (Desktop Only) */}
+        <button className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg"
-            className="w-8 h-8 md:w-12 md:h-12"
-            alt="+"
+            className="w-6 h-6"
+            alt="Create"
           />
-          <span className="font-semibold text-sm md:text-base">Create</span>
+          <span className="font-medium">Create</span>
         </button>
-        <img
-          className="rounded-full w-[1.25rem] h-[1.25rem] md:w-[1.5rem] md:h-[1.5rem] cursor-pointer"
-          src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
-          alt="Notification"
-        />
-        <img
-          className="rounded-full w-6 h-6 md:w-8 md:h-8 cursor-pointer"
-          src="https://avatars.githubusercontent.com/u/109482893?v=4"
-          alt="User"
-        />
+
+        {/* Notification and Profile */}
+        <button className="p-2 hover:bg-gray-100 rounded-full">
+          <img
+            className="w-6 h-6"
+            src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
+            alt="Notifications"
+          />
+        </button>
+        <button className="overflow-hidden rounded-full hover:bg-gray-100">
+          <img
+            className="w-8 h-8"
+            src="https://avatars.githubusercontent.com/u/109482893?v=4"
+            alt="Profile"
+          />
+        </button>
       </div>
     </div>
   );
 };
+
 
 export default Header;

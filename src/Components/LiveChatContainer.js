@@ -24,8 +24,8 @@ const LiveChatContainer = () => {
   }, []);
 
   return (
-    <div className="flex flex-col px-2 lg:px-0">
-      <div className="w-full lg:w-[350px] xl:w-[400px] h-[300px] lg:h-[450px] bg-slate-50 mt-2 rounded-xl px-2 py-2 flex gap-2 flex-col-reverse overflow-y-scroll shadow-md">
+    <div className="flex flex-col px-2 lg:px-2">
+      <div className="w-full h-[300px] lg:h-[450px] bg-slate-50 mt-2 rounded-xl px-2 py-2 flex gap-2 flex-col-reverse overflow-y-auto shadow-md">
         {liveChat.map((items) => (
           <LiveChatLayout data={items} key={items.id} />
         ))}
