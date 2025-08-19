@@ -21,19 +21,34 @@ const Header = () => {
   const inputRef = useRef(null);
 
   async function callSearchAPI() {
-    const apiData = await fetch(
-      `https://suggestqueries.google.com/complete/search?client=firefox&q=${searchText}`
-    );
-    const jsonData = await apiData.json();
-    setSearchSuggestion(jsonData[1]);
-    dispatch(addToCache({ [searchText]: jsonData[1] }));
+    try {
+      const apiKey = "AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw"; // Your YouTube API key
+      const apiData = await fetch(
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${encodeURIComponent(
+          searchText
+        )}&type=video&key=${apiKey}`
+      );
+      const jsonData = await apiData.json();
+      const suggestions = jsonData.items
+        ? jsonData.items.map((item) => item.snippet.title)
+        : [];
+      setSearchSuggestion(suggestions);
+      dispatch(addToCache({ [searchText]: suggestions }));
+    } catch (error) {
+      console.error("Search suggestion error:", error);
+      setSearchSuggestion([]);
+    }
   }
 
   useEffect(() => {
     const apiTimer = setTimeout(() => {
       if (searchCache[searchText]) {
         setSearchSuggestion(searchCache[searchText]);
-      } else if (searchText) callSearchAPI();
+      } else if (searchText && searchText.length >= 2) {
+        callSearchAPI();
+      } else {
+        setSearchSuggestion([]);
+      }
     }, 300);
 
     return () => {
@@ -86,7 +101,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex flex-row justify-between items-center fixed top-0 w-full h-14 bg-white z-50 border-b border-gray-200 px-4">
+    <div className="flex flex-row justify-between items-center fixed top-0 w-full h-14 bg-white z-50  px-4">
       {/* Left Section - Logo and Menu */}
       <div className="flex items-center gap-4">
         <img
@@ -142,25 +157,27 @@ const Header = () => {
             className="px-6 bg-gray-100 border border-l-0 border-gray-300 rounded-r-full hover:bg-gray-200">
             <img className="w-5 h-5" alt="Search" src={searchIcon} />
           </button>
-          {searchBoxStatus && searchText !== "" && searchSuggestion.length > 0 && (
-            <ul
-              ref={suggestionsRef}
-              className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl py-2 border shadow-lg max-w-[600px] mx-auto">
-              {searchSuggestion.map((item, index) => (
-                <li
-                  key={index}
-                  className={`py-2 px-4 hover:bg-gray-100 cursor-pointer ${
-                    index === activeSuggestionIndex ? "bg-gray-100" : ""
-                  }`}
-                  onMouseDown={() => handleSuggestionClick(item)}>
-                  <div className="flex items-center gap-3">
-                    <img src={searchIcon} className="w-4 h-4" alt="search" />
-                    <span>{item}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
+          {searchBoxStatus &&
+            searchText !== "" &&
+            searchSuggestion.length > 0 && (
+              <ul
+                ref={suggestionsRef}
+                className="absolute top-full left-0 right-52 mt-1 bg-white rounded-xl py-2 border shadow-lg max-w-[600px] mx-auto">
+                {searchSuggestion.map((item, index) => (
+                  <li
+                    key={index}
+                    className={`py-2 px-4 hover:bg-gray-100 cursor-pointer ${
+                      index === activeSuggestionIndex ? "bg-gray-100" : ""
+                    }`}
+                    onMouseDown={() => handleSuggestionClick(item)}>
+                    <div className="flex items-center gap-3">
+                      <img src={searchIcon} className="w-4 h-4" alt="search" />
+                      <span>{item}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
         </form>
         <button className="ml-4 p-2.5 rounded-full hover:bg-gray-100">
           <img
@@ -174,10 +191,12 @@ const Header = () => {
       {/* Right Section - Icons */}
       <div className="flex items-center gap-3 md:gap-4">
         {/* Search Icon (Mobile Only) */}
-        <button className="md:hidden p-2 hover:bg-gray-100 rounded-full" onClick={() => navigate('/search')}>
+        <button
+          className="md:hidden p-2 hover:bg-gray-100 rounded-full"
+          onClick={() => navigate("/search")}>
           <img className="w-6 h-6" alt="Search" src={searchIcon} />
         </button>
-        
+
         {/* Social Links (Desktop Only) */}
         <div className="hidden md:flex items-center gap-4">
           <a
@@ -223,6 +242,5 @@ const Header = () => {
     </div>
   );
 };
-
 
 export default Header;
