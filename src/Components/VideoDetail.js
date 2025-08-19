@@ -31,53 +31,53 @@ const VideoDetail = () => {
   }, []);
   if (videoInfo.length === 0) return;
   return (
-    <div className="w-[57%] flex items-start flex-col ml-14 gap-5">
-      <div className="flex items-start flex-col gap-5 w-full">
-        <h1 className="font-bold text-xl w-full">
+    <div className="w-full flex items-start flex-col gap-4">
+      <div className="flex items-start flex-col gap-4 w-full">
+        <h1 className="font-bold text-base sm:text-lg lg:text-xl w-full px-2">
           {videoInfo.snippet.localized.title}
         </h1>
-        <div className="flex justify-between px-3.5 w-full">
-          <div className="flex items-center justify-center gap-5">
-            <div className="flex flex-row gap-1">
+        <div className="flex flex-col sm:flex-row justify-between w-full gap-4 px-2">
+          <div className="flex items-center gap-3 sm:gap-5">
+            <div className="flex flex-row gap-2 items-center">
               <img
                 src="https://avatar.iran.liara.run/public"
                 alt="logo"
-                className="h-9 w-9 rounded-full"
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full"
               />
-              <h1 className="font-semibold text-lg">
+              <h1 className="font-semibold text-sm sm:text-base lg:text-lg">
                 {videoInfo.snippet.channelTitle}
               </h1>
             </div>
-            <button className="px-3 py-1.5 rounded-2xl bg-gray-900 text-white font-sans font-medium border hover:bg-gray-800">
+            <button className="px-3 py-1 sm:py-1.5 rounded-2xl bg-gray-900 text-white font-sans text-sm sm:text-base font-medium border hover:bg-gray-800">
               Subscribe
             </button>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-4 border rounded-2xl py-0.5">
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-4 border rounded-2xl py-0.5">
+              <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full hover:bg-gray-100">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/159/159766.png"
                   alt="Like"
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                 />
-                <span className="text-sm font-medium">
+                <span className="text-xs sm:text-sm font-medium">
                   {videoInfo.statistics.likeCount}
                 </span>
               </button>
 
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
+              <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full hover:bg-gray-100">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/159/159775.png"
                   alt="Dislike"
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                 />
               </button>
             </div>
-            <div className="flex items-center gap-4 border rounded-2xl">
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
+            <div className="flex items-center gap-2 sm:gap-4 border rounded-2xl">
+              <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full hover:bg-gray-100">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -88,13 +88,13 @@ const VideoDetail = () => {
                     d="M4 12v7a1 1 0 0 0 1 1h14M16 6l-4-4-4 4M12 2v14"
                   />
                 </svg>
-                <span className="text-base font-medium">Share</span>
+                <span className="text-sm sm:text-base font-medium">Share</span>
               </button>
 
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
+              <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full hover:bg-gray-100">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -105,19 +105,19 @@ const VideoDetail = () => {
                     d="M12 3v12m0 0l4-4m-4 4l-4-4m13 9H3"
                   />
                 </svg>
-                <span className="text-base font-medium">Download</span>
+                <span className="text-sm sm:text-base font-medium">Download</span>
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 rounded-xl p-1.5 w-full">
-        <p className={descTailwindConfig}>
-          <div className="flex flex-row gap-3.5 text-black text-base">
-            <span className="text-sm font-medium">
+      <div className="bg-gray-100 rounded-xl p-1.5 w-full mx-2">
+        <p className={isDescOpen ? "w-full text-wrap p-2.5 rounded-xl font-medium text-xs sm:text-sm text-gray-700" : "w-full text-wrap p-2.5 rounded-xl h-24 sm:h-32 overflow-hidden font-medium text-xs sm:text-sm text-gray-700"}>
+          <div className="flex flex-row gap-2 sm:gap-3.5 text-black">
+            <span className="text-xs sm:text-sm font-medium">
               {videoInfo.statistics.viewCount + " views"}
             </span>
-            <span className="text-sm font-medium">
+            <span className="text-xs sm:text-sm font-medium">
               {new Date(videoInfo.snippet.publishedAt).toDateString()}
             </span>
           </div>
@@ -130,10 +130,10 @@ const VideoDetail = () => {
           ))}
         </p>
         <span
-          className=" font-medium  px-2 cursor-pointer"
+          className="font-medium px-2 cursor-pointer text-xs sm:text-sm"
           onClick={(e) => setDescOpen(!isDescOpen)}>
           <br />
-          <span>{descText}</span>
+          <span>{isDescOpen ? "Show Less" : "More..."}</span>
           <br />
         </span>
       </div>

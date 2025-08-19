@@ -5,16 +5,16 @@ const SearchVideoLayout = ({ info }) => {
   return (
     <Link
       to={"../watch?v=" + info.id.videoId}
-      className="flex gap-5  rounded-lg w-2/3 hover:bg-slate-50 hover:shadow">
+      className="flex flex-col sm:flex-row gap-2 sm:gap-5 rounded-lg w-full sm:w-[90%] lg:w-2/3 hover:bg-slate-50 hover:shadow p-2">
       <img
         src={`https://img.youtube.com/vi/${info.id.videoId}/maxresdefault.jpg`}
         alt="error"
-        className="w-72 h-40 rounded-2xl "
+        className="w-full sm:w-56 md:w-64 lg:w-72 aspect-video sm:h-32 md:h-36 lg:h-40 rounded-xl sm:rounded-2xl object-cover"
       />
 
-      <div className="pl-1">
-        <div className="font-sans font-medium text-base p-0 m-0">{title}</div>
-        <div className="font-medium text-base text-stone-700 pl-1">
+      <div className="pl-0 sm:pl-1">
+        <div className="font-sans font-medium text-sm sm:text-base p-0 m-0 line-clamp-2">{title}</div>
+        <div className="font-medium text-xs sm:text-sm text-stone-700 mt-1 sm:pl-1">
           {channelTitle}
         </div>
       </div>

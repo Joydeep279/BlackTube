@@ -22,7 +22,7 @@ const Search = () => {
     getSearchData();
   }, [searchQuery]);
   return (
-    <div className="flex flex-col gap-10 ml-10 mt-5 justify-center w-full items-start">
+    <div className="flex flex-col gap-4 sm:gap-6 lg:gap-10 px-2 sm:px-4 lg:px-10 mt-3 sm:mt-5 justify-center w-full items-center sm:items-start">
       {searchData.map((items) => (
         <SearchVideoLayout info={items} key={items.id.videoId} />
       ))}

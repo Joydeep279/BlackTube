@@ -86,16 +86,16 @@ const Header = () => {
   };
 
   return (
-    <div className="flex flex-row justify-between px-0 items-start sticky top-0 pb-1 min-w-14 backdrop-blur-md bg-white/90 z-50">
-      <div className="flex flex-row items-center gap-2.5 pt-2.5 ml-5">
+    <div className="flex flex-col md:flex-row justify-between px-2 md:px-4 items-center md:items-start sticky top-0 pb-1 min-w-14 backdrop-blur-md bg-white/90 z-50">
+      <div className="flex flex-row items-center gap-2.5 pt-2.5">
         <img
           onClick={() => toggleNavStateFn()}
-          className="w-8 h-8 cursor-pointer"
+          className="w-6 h-6 md:w-8 md:h-8 cursor-pointer"
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
           alt="sideBTN"
         />
         <Link to={"/"}>
-          <img className="w-[120px] h-6" src={logo} alt="YouTube" />
+          <img className="w-[90px] md:w-[120px] h-5 md:h-6" src={logo} alt="YouTube" />
         </Link>
       </div>
       <div className="flex flex-row items-center rounded-xl border-1 border-solid pt-1 font-sans font-medium text-gray-800">
@@ -122,7 +122,7 @@ const Header = () => {
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search"
               type="text"
-              className="w-[525px] h-10 rounded-l-2xl border-r-2 px-5 py-1 border border-gray-300 focus:border-blue-500 outline-none placeholder:font-normal"
+              className="w-[200px] sm:w-[300px] md:w-[400px] lg:w-[525px] h-8 md:h-10 rounded-l-2xl border-r-2 px-3 md:px-5 py-1 border border-gray-300 focus:border-blue-500 outline-none placeholder:font-normal"
             />
             {searchText && (
               <button
@@ -142,17 +142,17 @@ const Header = () => {
             searchSuggestion.length > 0 && (
               <ul
                 ref={suggestionsRef}
-                className="fixed bg-white w-[525px] rounded-xl px-2 py-1 my-1 font-sans border shadow-md">
+                className="fixed bg-white w-[200px] sm:w-[300px] md:w-[400px] lg:w-[525px] rounded-xl px-2 py-1 my-1 font-sans border shadow-md">
                 {searchSuggestion.map((item, index) => (
                   <li
                     key={index}
-                    className={`py-2.5 px-1 hover:bg-slate-50 hover:border rounded-lg ${
+                    className={`py-2 md:py-2.5 px-1 hover:bg-slate-50 hover:border rounded-lg text-sm md:text-base ${
                       index === activeSuggestionIndex ? "bg-slate-100" : ""
                     }`}
                     onMouseDown={() => handleSuggestionClick(item)}>
                     <img
                       src={searchIcon}
-                      className="w-5 h-5 inline mr-2.5"
+                      className="w-4 h-4 md:w-5 md:h-5 inline mr-2"
                       alt="search-icon"
                     />
                     {item}
@@ -167,52 +167,51 @@ const Header = () => {
             navigate(`/results?search_query=${searchText}`);
           }}
           type="submit"
-          className="rounded-r-2xl border-none bg-gray-100 px-5 py-1 hover:bg-gray-200">
+          className="rounded-r-2xl border-none bg-gray-100 px-3 md:px-5 py-1 hover:bg-gray-200">
           <img
-            className="w-7 h-8 mix-blend-multiply"
+            className="w-5 h-6 md:w-7 md:h-8 mix-blend-multiply"
             alt="Search"
             src={searchIcon}
           />
         </button>
-        <button className="rounded-full bg-gray-100 ml-5 p-3 hover:bg-gray-200">
+        <button className="hidden md:block rounded-full bg-gray-100 ml-5 p-2 md:p-3 hover:bg-gray-200">
           <img
             src="https://cdn-icons-png.flaticon.com/512/566/566100.png"
             alt="useMic"
-            className="w-5 h-5"
+            className="w-4 h-4 md:w-5 md:h-5"
           />
         </button>
       </div>
-      <div className="flex flex-row py-2.5 gap-5 items-center">
+      <div className="hidden md:flex flex-row py-2.5 gap-3 md:gap-5 items-center">
         <a
           target="_blank"
           href="https://github.com/Joydeep279/BlackTube"
           className="bg-transparent mix-blend-multiply">
-          <img src={githubLogo} alt="Github" className="w-8 h-8" />
+          <img src={githubLogo} alt="Github" className="w-6 h-6 md:w-8 md:h-8" />
         </a>
         <a
           target="_blank"
           href="https://www.linkedin.com/in/joydeep-nath007"
           className="bg-transparent mix-blend-multiply">
-          <img src={linkedinLogo} alt="LinkedIN" className="w-9 h-9" />
+          <img src={linkedinLogo} alt="LinkedIN" className="w-7 h-7 md:w-9 md:h-9" />
         </a>
       </div>
-      <div className="flex flex-row items-center gap-8 pr-5 pt-2">
-        <button className="flex justify-start items-center rounded-3xl px-1.5 py-3.5 h-9 bg-gray-100 hover:bg-gray-200">
+      <div className="flex flex-row items-center gap-4 md:gap-8 px-2 md:pr-5 pt-2">
+        <button className="hidden md:flex justify-start items-center rounded-3xl px-1.5 py-3.5 h-9 bg-gray-100 hover:bg-gray-200">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg"
-            className="w-12 h-12"
+            className="w-8 h-8 md:w-12 md:h-12"
             alt="+"
           />
-          <span className="font-semibold">Create</span>
+          <span className="font-semibold text-sm md:text-base">Create</span>
         </button>
         <img
-          className="rounded-full w-[1.5rem] h-[1.5rem] cursor-pointer"
+          className="rounded-full w-[1.25rem] h-[1.25rem] md:w-[1.5rem] md:h-[1.5rem] cursor-pointer"
           src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
           alt="Notification"
         />
-
         <img
-          className="rounded-full w-8 h-8 cursor-pointer"
+          className="rounded-full w-6 h-6 md:w-8 md:h-8 cursor-pointer"
           src="https://avatars.githubusercontent.com/u/109482893?v=4"
           alt="User"
         />

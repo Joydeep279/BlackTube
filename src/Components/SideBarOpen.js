@@ -8,34 +8,34 @@ const SideBar = () => {
   const navState = useSelector((store) => store.nav.isNavOpen);
   if (!navState) return null;
   return (
-    <div className="flex flex-col w-2/12 items-start sticky top-16 left-0 h-screen overflow-y-scroll pb-16 ml-5 no-scrollbar hover::show-scrollbar backdrop-blur-md bg-white/90">
-      <ul className={tailwindConfig_ul}>
+    <div className="hidden md:flex flex-col w-full md:w-2/12 items-start sticky top-16 left-0 h-screen overflow-y-scroll pb-16 md:ml-5 no-scrollbar hover::show-scrollbar backdrop-blur-md bg-white/90">
+      <ul className={tailwindConfig_ul + " text-xs md:text-sm"}>
         <li className={tailwindConfig_li + " bg-gray-100"}>
           <div className="flex gap-5 items-center py-2 px-1">
             <img
               src="https://img.icons8.com/?size=512&id=2797&format=png"
               alt="home-icon"
-              className="w-6 h-6"
+              className="w-5 h-5 md:w-6 md:h-6"
             />
             <span> Home</span>
           </div>
         </li>
         <li className={tailwindConfig_li}>
-          <div className="flex gap-5 items-center py-2 px-1">
+          <div className="flex gap-3 md:gap-5 items-center py-2 px-1">
             <img
               src="https://img.icons8.com/?size=512&id=h5l3jZXManlM&format=png"
               alt="shorts-icon"
-              className="w-6 h-6"
+              className="w-5 h-5 md:w-6 md:h-6"
             />
             <span> Shorts</span>
           </div>
         </li>
         <li className={tailwindConfig_li}>
-          <div className="flex gap-5 items-center py-2 px-1 ">
+          <div className="flex gap-3 md:gap-5 items-center py-2 px-1">
             <img
               src="https://img.icons8.com/?size=512w&id=reqYJP3X0f7Y&format=png"
               alt="subscriptions-icon"
-              className="w-6 h-6"
+              className="w-5 h-5 md:w-6 md:h-6"
             />
             <span> Subscriptions</span>
           </div>

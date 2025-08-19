@@ -14,20 +14,26 @@ const Watch = () => {
     dispatch(closeNavBar());
   }, []);
   return (
-    <div>
-      <div className="flex">
-        <iframe
-          className="mx-14 my-2 rounded-2xl w-[866px] h-[487px]"
-          title={`video-${videoID}`}
-          src={`https://www.youtube.com/embed/${videoID}?autoplay=1&modestbranding=1&rel=0`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-        <LiveChatContainer />
+    <div className="max-w-full overflow-x-hidden">
+      <div className="flex flex-col lg:flex-row">
+        <div className="w-full lg:w-[75%] px-2 sm:px-4 lg:px-8">
+          <div className="aspect-video w-full rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden my-2">
+            <iframe
+              className="w-full h-full"
+              title={`video-${videoID}`}
+              src={`https://www.youtube.com/embed/${videoID}?autoplay=1&modestbranding=1&rel=0`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+          <VideoDetail />
+          <Comment />
+        </div>
+        <div className="w-full lg:w-[25%]">
+          <LiveChatContainer />
+        </div>
       </div>
-      <VideoDetail />
-      <Comment />
     </div>
   );
 };

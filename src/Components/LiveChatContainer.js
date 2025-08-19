@@ -24,8 +24,8 @@ const LiveChatContainer = () => {
   }, []);
 
   return (
-    <div className="flex flex-col">
-      <div className="w-96 h-[450px] bg-slate-50 mt-2 rounded-xl px-2 py-2 flex gap-2 flex-col-reverse overflow-y-scroll shadow-md">
+    <div className="flex flex-col px-2 lg:px-0">
+      <div className="w-full lg:w-[350px] xl:w-[400px] h-[300px] lg:h-[450px] bg-slate-50 mt-2 rounded-xl px-2 py-2 flex gap-2 flex-col-reverse overflow-y-scroll shadow-md">
         {liveChat.map((items) => (
           <LiveChatLayout data={items} key={items.id} />
         ))}
@@ -42,11 +42,11 @@ const LiveChatContainer = () => {
         <input
           placeholder="Enter the Text"
           type="text"
-          className="w-4/5 px-5 py-0.5 outline-blue-400 rounded-l-xl outline-1 bg-gray-100 border shadow"
+          className="w-3/4 px-2 sm:px-5 py-0.5 text-sm outline-blue-400 rounded-l-xl outline-1 bg-gray-100 border shadow"
           value={typedMsg}
           onChange={(e) => setTypedMsg(e.target.value)}></input>
         <button
-          className="w-1/5 h-8 bg-black border-r rounded-l border-white text-white font-mono font-medium hover:bg-gray-800"
+          className="w-1/4 h-8 bg-black border-r rounded-l border-white text-white text-xs sm:text-sm font-mono font-medium hover:bg-gray-800"
           onClick={() => {
             if (typedMsg !== "") {
               dispatch(addChat({ id: -1, name: "Joydeep", msg: typedMsg }));
@@ -56,7 +56,7 @@ const LiveChatContainer = () => {
           SEND
         </button>
         <button
-          className="w-1/5 h-8 rounded-r bg-black text-white font-mono font-medium hover:bg-gray-800"
+          className="w-1/4 h-8 rounded-r bg-black text-white text-xs sm:text-sm font-mono font-medium hover:bg-gray-800"
           onClick={() => {
             clearInterval(pollIntervalRef.current);
           }}>

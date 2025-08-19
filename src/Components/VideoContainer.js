@@ -4,20 +4,12 @@ import ChipBar from "./ChipBar";
 import { useSelector } from "react-redux";
 
 const VideoContainer = () => {
-  let mainContainerCSS;
-  let videoCardLayoutCSS;
-  let videoContainerCSS;
   const isNavOpen = useSelector((store) => store.nav.isNavOpen);
-  if (isNavOpen) {
-    mainContainerCSS = "w-[82%] ";
-    videoCardLayoutCSS = "w-[400px] h-[22.5rem]text-wrap rounded-xl overflow-hidden hover:rounded transition-all duration-300";
-    videoContainerCSS = "flex flex-wrap gap-2 justify-start flex-row";
-  } else {
-    mainContainerCSS = "w-full";
-    videoCardLayoutCSS =
-      "w-[425px] h-[21rem] text-wrap rounded-xl overflow-hidden";
-    videoContainerCSS = "flex flex-row flex-wrap gap-2.5 justify-center";
-  }
+  const mainContainerCSS = isNavOpen 
+    ? "w-full md:w-[82%] px-2 sm:px-4" 
+    : "w-full px-2 sm:px-4";
+  const videoCardLayoutCSS = "w-full h-auto text-wrap rounded-xl overflow-hidden hover:rounded transition-all duration-300";
+  const videoContainerCSS = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-6 gap-x-4 place-items-center";
   const [videolist, setVideoList] = useState(0);
   async function getVideoData() {
     const apiData = await fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw");

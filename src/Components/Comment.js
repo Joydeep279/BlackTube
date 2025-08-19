@@ -20,28 +20,28 @@ const Comment = () => {
     getCommentData();
   }, []);
   return (
-    <div className="pl-5">
+    <div className="px-2 sm:px-5">
       <div className="flex items-center justify-start">
-        <h1 className="py-5 text-xl font-bold px-10 font-sans">100 Comments</h1>
+        <h1 className="py-3 sm:py-5 text-base sm:text-xl font-bold px-2 sm:px-10 font-sans">100 Comments</h1>
         <img
           src="https://cdn-icons-png.flaticon.com/512/10337/10337146.png"
           alt="sort"
-          className="w-5 h-5"
+          className="w-4 h-4 sm:w-5 sm:h-5"
         />
-        <span className="pl-5 text-base font-medium font-sans">Sort By</span>
+        <span className="pl-2 sm:pl-5 text-sm sm:text-base font-medium font-sans">Sort By</span>
       </div>
-      <div className="pl-10 flex gap-5 mt-2.5 mb-10 items-start">
+      <div className="pl-2 sm:pl-10 flex gap-3 sm:gap-5 mt-2 sm:mt-2.5 mb-6 sm:mb-10 items-start">
         <img
-          className="rounded-full w-8 h-8"
+          className="rounded-full w-6 h-6 sm:w-8 sm:h-8"
           src="https://avatars.githubusercontent.com/u/109482893?v=4"
           alt="User"
         />
         <input
-          className="border-b-2 w-1/2 outline-none focus:border-b-2 focus:border-black"
+          className="border-b-2 w-full sm:w-1/2 text-sm sm:text-base outline-none focus:border-b-2 focus:border-black"
           type="text"
           placeholder="Add a Comment"></input>
       </div>
-      <div className="flex flex-col gap-5 ml-16">
+      <div className="flex flex-col gap-4 sm:gap-5 ml-8 sm:ml-16">
         {commentData.map((items) => (
           <CommentLayout info={items} key={items.id} />
         ))}
