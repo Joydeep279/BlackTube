@@ -5,14 +5,12 @@ import SearchVideoLayout from "./SearchVideoLayout";
 const Search = () => {
   const [getVideoId] = useSearchParams("search_query");
   const searchQuery = getVideoId.get("search_query");
-  console.log(searchQuery);
   const [searchData, setSearchData] = useState([]);
   async function getSearchData() {
     const apiData = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${searchQuery}&type=video&key=AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw`
     );
     const data = await apiData.json();
-    console.log(data.items);
     setSearchData(data.items);
   }
   useEffect(() => {

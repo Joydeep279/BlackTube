@@ -14,6 +14,7 @@ const Header = () => {
   const [searchText, setSearchText] = useState("");
   const [searchSuggestion, setSearchSuggestion] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
+  const [mobileSearchVisible, setMobileSearchVisible] = useState(false);
   const searchCache = useSelector((store) => store.search);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex flex-row justify-between items-center fixed top-0 w-full h-14 bg-white z-50  px-4">
+    <div className="flex flex-row justify-between items-center fixed top-0 w-full h-14 backdrop-blur-md bg-white/90 z-50  px-4">
       {/* Left Section - Logo and Menu */}
       <div className="flex items-center gap-4">
         <img
@@ -155,7 +156,7 @@ const Header = () => {
           <button
             type="submit"
             className="px-6 bg-gray-100 border border-l-0 border-gray-300 rounded-r-full hover:bg-gray-200">
-            <img className="w-5 h-5" alt="Search" src={searchIcon} />
+            <img className="w-5 h-5 mix-blend-multiply" alt="Search" src={searchIcon} />
           </button>
           {searchBoxStatus &&
             searchText !== "" &&
@@ -171,7 +172,7 @@ const Header = () => {
                     }`}
                     onMouseDown={() => handleSuggestionClick(item)}>
                     <div className="flex items-center gap-3">
-                      <img src={searchIcon} className="w-4 h-4" alt="search" />
+                      <img src={searchIcon} className="w-4 h-4 mix-blend-multiply" alt="search" />
                       <span>{item}</span>
                     </div>
                   </li>
@@ -193,7 +194,7 @@ const Header = () => {
         {/* Search Icon (Mobile Only) */}
         <button
           className="md:hidden p-2 hover:bg-gray-100 rounded-full"
-          onClick={() => navigate("/search")}>
+          onClick={() => setMobileSearchVisible(true)}>
           <img className="w-6 h-6" alt="Search" src={searchIcon} />
         </button>
 
@@ -203,13 +204,13 @@ const Header = () => {
             target="_blank"
             href="https://github.com/Joydeep279/BlackTube"
             className="hover:bg-gray-100 p-2 rounded-full">
-            <img src={githubLogo} alt="Github" className="w-6 h-6" />
+            <img src={githubLogo} alt="Github" className="w-7 h-7" />
           </a>
           <a
             target="_blank"
             href="https://www.linkedin.com/in/joydeep-nath007"
             className="hover:bg-gray-100 p-2 rounded-full">
-            <img src={linkedinLogo} alt="LinkedIn" className="w-6 h-6" />
+            <img src={linkedinLogo} alt="LinkedIn" className="w-8 h-8" />
           </a>
         </div>
 
@@ -239,6 +240,96 @@ const Header = () => {
           />
         </button>
       </div>
+
+      {/* Mobile Search Overlay */}
+      {mobileSearchVisible && (
+        <div className="fixed inset-0 bg-white z-[60] md:hidden">
+          <div className="flex items-center h-14 px-4 gap-4 border-b">
+            <button
+              onClick={() => setMobileSearchVisible(false)}
+              className="p-2 hover:bg-gray-100 rounded-full">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2223/2223615.png"
+                className="w-6 h-6"
+                alt="Back"
+              />
+            </button>
+            <form
+              className="flex flex-1"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (searchText.trim()) {
+                  setMobileSearchVisible(false);
+                  navigate(
+                    `/results?search_query=${encodeURIComponent(searchText)}`
+                  );
+                }
+              }}>
+              <div className="relative flex-1">
+                <input
+                  ref={inputRef}
+                  autoFocus
+                  onFocus={() => {
+                    setSearchBoxStatus(true);
+                    setActiveSuggestionIndex(-1);
+                  }}
+                  onBlur={() => {
+                    setTimeout(() => {
+                      setSearchBoxStatus(false);
+                    }, 250);
+                  }}
+                  onKeyDown={handleKeyDown}
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeholder="Search YouTube"
+                  type="text"
+                  className="w-full h-10 border-b border-gray-300 px-4 focus:border-blue-500 outline-none"
+                />
+                {searchText && (
+                  <button
+                    type="button"
+                    onClick={clearSearch}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                    <img className="w-4 h-4" src={crossIcon} alt="Clear" />
+                  </button>
+                )}
+              </div>
+              <button type="submit" className="px-6 hover:bg-gray-100">
+                <img className="w-5 h-5" alt="Search" src={searchIcon} />
+              </button>
+            </form>
+          </div>
+          {searchBoxStatus &&
+            searchText !== "" &&
+            searchSuggestion.length > 0 && (
+              <ul className="bg-white py-2">
+                {searchSuggestion.map((item, index) => (
+                  <li
+                    key={index}
+                    className={`py-3 px-4 hover:bg-gray-50 active:bg-gray-100 ${
+                      index === activeSuggestionIndex ? "bg-gray-50" : ""
+                    }`}
+                    onTouchStart={() => {
+                      setSearchText(item);
+                      setMobileSearchVisible(false);
+                      navigate(
+                        `/results?search_query=${encodeURIComponent(item)}`
+                      );
+                    }}>
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={searchIcon}
+                        className="w-4 h-4 opacity-60"
+                        alt="search"
+                      />
+                      <span className="text-[15px]">{item}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+        </div>
+      )}
     </div>
   );
 };
