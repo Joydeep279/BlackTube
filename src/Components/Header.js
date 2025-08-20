@@ -156,7 +156,11 @@ const Header = () => {
           <button
             type="submit"
             className="px-6 bg-gray-100 border border-l-0 border-gray-300 rounded-r-full hover:bg-gray-200">
-            <img className="w-5 h-5 mix-blend-multiply" alt="Search" src={searchIcon} />
+            <img
+              className="w-5 h-5 mix-blend-multiply"
+              alt="Search"
+              src={searchIcon}
+            />
           </button>
           {searchBoxStatus &&
             searchText !== "" &&
@@ -172,7 +176,11 @@ const Header = () => {
                     }`}
                     onMouseDown={() => handleSuggestionClick(item)}>
                     <div className="flex items-center gap-3">
-                      <img src={searchIcon} className="w-4 h-4 mix-blend-multiply" alt="search" />
+                      <img
+                        src={searchIcon}
+                        className="w-4 h-4 mix-blend-multiply"
+                        alt="search"
+                      />
                       <span>{item}</span>
                     </div>
                   </li>
@@ -203,19 +211,19 @@ const Header = () => {
           <a
             target="_blank"
             href="https://github.com/Joydeep279/BlackTube"
-            className="hover:bg-gray-100 p-2 rounded-full">
+            className=" mix-blend-multiply rounded">
             <img src={githubLogo} alt="Github" className="w-7 h-7" />
           </a>
           <a
             target="_blank"
             href="https://www.linkedin.com/in/joydeep-nath007"
-            className="hover:bg-gray-100 p-2 rounded-full">
+            className="mix-blend-multiply rounded">
             <img src={linkedinLogo} alt="LinkedIn" className="w-8 h-8" />
           </a>
         </div>
 
         {/* Create Button (Desktop Only) */}
-        <button className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100">
+        <button className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-200 bg-gray-100">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Plus_symbol.svg"
             className="w-6 h-6"
