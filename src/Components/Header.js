@@ -322,7 +322,7 @@ const Header = () => {
                         className="w-4 h-4 opacity-60"
                         alt="search"
                       />
-                      <span className="text-[15px]">{item}</span>
+                      <span className="text-sm font-medium">{item}</span>
                     </div>
                   </li>
                 ))}
