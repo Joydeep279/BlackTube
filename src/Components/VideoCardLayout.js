@@ -11,7 +11,7 @@ const VideoCardLayout = ({ info }) => {
     viewCountUnit = " K";
   }
   return (
-    <Link to={`watch?v=${info.id}`} className="group block w-full max-w-[450px] touch-manipulation">
+    <Link to={`watch?v=${info.id}`} className="group block w-full max-w-[480px] touch-manipulation">
       <div className="overflow-hidden rounded-lg md:rounded-xl hover:rounded transition-all duration-300">
         <img
           src={`https://img.youtube.com/vi/${info.id}/maxresdefault.jpg`}
@@ -25,14 +25,14 @@ const VideoCardLayout = ({ info }) => {
         <img
           src={`https://avatar.iran.liara.run/public?v=${info.id}`}
           alt="profile-pic"
-          className="w-9 h-9 md:w-10 md:h-10 rounded-full flex-shrink-0"
+          className="w-6 h-6 md:w-8 md:h-8 rounded-full flex-shrink-0"
         />
         <div className="flex flex-col flex-1 min-w-0">
-          <h3 className="font-semibold text-base md:text-[17px] leading-snug line-clamp-2 break-words">
+          <h3 className="font-semibold text-[15px] md:text-[16px] leading-snug line-clamp-2 break-words">
             {title}
           </h3>
-          <p className="text-sm md:text-[15px] font-medium text-gray-700 mt-1">{channelTitle}</p>
-          <p className="text-sm md:text-[15px] font-medium text-gray-700">
+          <p className="text-[15px] md:text-base font-medium text-gray-700 mt-1.5">{channelTitle}</p>
+          <p className="text-[15px] md:text-base font-medium text-gray-700">
             {newViewCount + viewCountUnit} views
           </p>
         </div>
