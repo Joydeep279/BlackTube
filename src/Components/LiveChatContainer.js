@@ -5,7 +5,7 @@ import LiveChatLayout from "./LiveChatLayout";
 
 const LiveChatContainer = () => {
   const [typedMsg, setTypedMsg] = useState("");
-  const liveChat = useSelector((store) => store.liveChat);
+  const liveChat = useSelector((store) => store.liveChat.data);
   const dispatch = useDispatch();
   const pollIntervalRef = useRef(null);
   async function pollLiveChatApi() {

@@ -2,9 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-
+import { toggleLiveStatus } from "../utils/LiveChatStore";
+import { useDispatch, useSelector } from "react-redux";
 const VideoDetail = () => {
+  const liveChatStatus = useSelector((store) => store.liveChat.status);
   const [isDescOpen, setDescOpen] = useState(false);
+  const dispatch = useDispatch();
+  const handleLiveContainer = () => {
+    dispatch(toggleLiveStatus());
+  };
   let descTailwindConfig;
   let descText;
   if (isDescOpen) {
@@ -91,28 +97,29 @@ const VideoDetail = () => {
                 <span className="text-sm sm:text-base font-medium">Share</span>
               </button>
 
-              <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full hover:bg-gray-100">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="1.5">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 3v12m0 0l4-4m-4 4l-4-4m13 9H3"
-                  />
-                </svg>
-                <span className="text-sm sm:text-base font-medium">Download</span>
+              <button
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full hover:bg-gray-100"
+                onClick={handleLiveContainer}>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2989/2989838.png"
+                  alt="subscriptions-icon"
+                  className="w-6 h-6"
+                />
+                <span className="text-sm sm:text-base font-medium">
+                  {liveChatStatus ? "Stop Live" : "Go Live"}
+                </span>
               </button>
             </div>
           </div>
         </div>
       </div>
       <div className="bg-gray-100 rounded-xl p-1.5 w-full mx-2">
-        <p className={isDescOpen ? "w-full text-wrap p-2.5 rounded-xl font-medium text-xs sm:text-sm text-gray-700" : "w-full text-wrap p-2.5 rounded-xl h-24 sm:h-32 overflow-hidden font-medium text-xs sm:text-sm text-gray-700"}>
+        <p
+          className={
+            isDescOpen
+              ? "w-full text-wrap p-2.5 rounded-xl font-medium text-xs sm:text-sm text-gray-700"
+              : "w-full text-wrap p-2.5 rounded-xl h-24 sm:h-32 overflow-hidden font-medium text-xs sm:text-sm text-gray-700"
+          }>
           <div className="flex flex-row gap-2 sm:gap-3.5 text-black">
             <span className="text-xs sm:text-sm font-medium">
               {videoInfo.statistics.viewCount + " views"}

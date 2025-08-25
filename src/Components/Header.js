@@ -181,7 +181,7 @@ const Header = () => {
                         className="w-4 h-4 mix-blend-multiply"
                         alt="search"
                       />
-                      <span>{item}</span>
+                      <span className="text-[15px] font-sans font-normal">{item}</span>
                     </div>
                   </li>
                 ))}
