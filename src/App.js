@@ -6,6 +6,7 @@ import MainContainer from "./Components/MainContainer";
 import VideoContainer from "./Components/VideoContainer";
 import Search from "./Components/Search";
 import { Provider } from 'react-redux';
+import NotFound from './Components/NotFound';
 
 const appRoute = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const appRoute = createBrowserRouter([
       {
         path: "/results",
         element: <Search />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
