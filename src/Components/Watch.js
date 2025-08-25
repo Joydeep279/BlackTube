@@ -5,6 +5,7 @@ import { closeNavBar } from "../utils/navState";
 import Comment from "./Comment";
 import LiveChatContainer from "./LiveChatContainer";
 import VideoDetail from "./VideoDetail";
+import Recommended from "./Recommended";
 
 const Watch = () => {
   const liveChatStatus = useSelector((store) => store.liveChat.status);
@@ -18,7 +19,7 @@ const Watch = () => {
     <div className="max-w-full overflow-x-hidden">
       <div className="flex flex-col lg:flex-row">
         <div className="flex-1 min-w-0 px-2 sm:px-4 lg:pl-4 lg:pr-6">
-          <div className="aspect-video w-full h-[85vh] rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden my-2">
+          <div className="aspect-video w-full md:h-[none] h-[85vh] rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden my-2">
             <iframe
               className="w-full h-full"
               title={`video-${videoID}`}
@@ -31,9 +32,13 @@ const Watch = () => {
           <VideoDetail />
           <Comment />
         </div>
-        {liveChatStatus && (
+        {liveChatStatus ? (
           <div className="w-full lg:min-w-[350px] lg:w-[350px] xl:w-[400px]">
             <LiveChatContainer />
+          </div>
+        ) : (
+          <div className="w-full lg:min-w-[350px] lg:w-[350px] xl:w-[400px]">
+            <Recommended />
           </div>
         )}
       </div>

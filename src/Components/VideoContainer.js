@@ -5,14 +5,18 @@ import { useSelector } from "react-redux";
 
 const VideoContainer = () => {
   const isNavOpen = useSelector((store) => store.nav.isNavOpen);
-  const mainContainerCSS = isNavOpen 
-    ? "w-full md:w-[82%] px-2 sm:px-4 mt-2 md:mt-0 pb-16 md:pb-0" 
+  const mainContainerCSS = isNavOpen
+    ? "w-full md:w-[82%] px-2 sm:px-4 mt-2 md:mt-0 pb-16 md:pb-0"
     : "w-full px-2 sm:px-4 mt-2 md:mt-0 pb-16 md:pb-0";
-  const videoCardLayoutCSS = "w-full h-auto text-wrap rounded-xl overflow-hidden hover:rounded transition-all duration-300";
-  const videoContainerCSS = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 gap-y-8 md:gap-y-10 gap-x-5 md:gap-x-8 place-items-center";
+  const videoCardLayoutCSS =
+    "w-full h-auto text-wrap rounded-xl overflow-hidden hover:rounded transition-all duration-300";
+  const videoContainerCSS =
+    "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 gap-y-8 md:gap-y-10 gap-x-5 md:gap-x-8 place-items-center";
   const [videolist, setVideoList] = useState(0);
   async function getVideoData() {
-    const apiData = await fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw");
+    const apiData = await fetch(
+      "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=AIzaSyCfUOj40aTqNvXjQsxAqDcAqBnexvcWnvw"
+    );
     const data = await apiData.json();
     setVideoList(data.items);
   }
